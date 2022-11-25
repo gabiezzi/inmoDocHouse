@@ -23,13 +23,13 @@ public class Property {
     private double price;
     @Column(name = "quantity_of_bathrooms")
     private int quantityOfBathrooms;
-    private int garage;
+    private boolean garage = Boolean.FALSE;
     private double expense;
     @Column(name = "private_Neighborhood")
     private boolean privateNeighborhood;
     @Column(name = "type_operation")
-    @Enumerated(EnumType.STRING)
-    private Operation typeOperation;
+//    @Enumerated(EnumType.STRING)
+    private String typeOperation;
     private int userId;
     private String ubication;
     private String address;

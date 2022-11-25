@@ -45,8 +45,7 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.findByQuantityOfAmbiences(quantityOfAmbiences));
     }
 
-
-    @GetMapping("/pricemin/{price}")
+    @GetMapping("/pricemin/{price}") //CAMBIE EL PARAMETRO ESPERADO DE PRICEMIN A PRICE
     public ResponseEntity<List<Property>> findByPriceLessThanEquals(@PathVariable("price") double price) {
         if(price == 0) {
             return ResponseEntity.noContent().build();
@@ -55,7 +54,7 @@ public class PropertyController {
     }
 
 
-    @GetMapping("/pricemax/{price}")
+    @GetMapping("/pricemax/{price}") //CAMBIE EL PARAMETRO ESPERADO DE PRICEMAX A PRICE
     public ResponseEntity<List<Property>> findByPriceGreaterThanEquals(@PathVariable("price") double price) {
         if(price == 0) {
             return ResponseEntity.noContent().build();

@@ -179,7 +179,7 @@ public class PropertyService {
         if (validateProperty(updateProperty)  ) {
             //propertyToUpdate.setId(propertyToUpdate.getId());
             propertyToUpdate.setM2(updateProperty.getM2());
-            propertyToUpdate.setGarage(updateProperty.getGarage());
+            propertyToUpdate.setGarage(updateProperty.isGarage());
             propertyToUpdate.setPrice(updateProperty.getPrice());
             propertyToUpdate.setExpense(updateProperty.getExpense());
             propertyToUpdate.setQuantityOfAmbiences(updateProperty.getQuantityOfAmbiences());
@@ -215,7 +215,6 @@ public class PropertyService {
                 property.getM2() == 0 &
                 property.getQuantityOfAmbiences() == 0 &
                 property.getQuantityOfBathrooms() == 0 &
-                property.getGarage() == 0 &
                 property.getExpense() == 0 &
 //                !property.getTypeOperation().equals(null) || !property.equals("") &
 //                !property.getUbication().equals(null) || !property.equals("") &
