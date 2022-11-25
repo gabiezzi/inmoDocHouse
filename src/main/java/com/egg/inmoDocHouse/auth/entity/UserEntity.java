@@ -24,7 +24,7 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Email
+    @Size(min = 8)
     private String username;
 
     @Size(min = 8)
