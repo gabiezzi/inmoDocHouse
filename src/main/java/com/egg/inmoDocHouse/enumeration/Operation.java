@@ -1,5 +1,15 @@
 package com.egg.inmoDocHouse.enumeration;
 
 public enum Operation {
-    Rental,Sale;
+    Rental {
+        public String toString() {
+            return "Rental";
+        }
+    },
+
+    Sale {
+        public String toString() {
+            return "Sale";
+        }
+    }
 }
