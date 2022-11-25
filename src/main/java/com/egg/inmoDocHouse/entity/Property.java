@@ -1,5 +1,6 @@
 package com.egg.inmoDocHouse.entity;
 
+import com.egg.inmoDocHouse.enumeration.Operation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Property {
     private double m2;
     @Column(name = "quantity_of_ambiences")
     private int quantityOfAmbiences;
-    private int price;
+    private double price;
     @Column(name = "quantity_of_bathrooms")
     private int quantityOfBathrooms;
     private int garage;
@@ -27,8 +28,8 @@ public class Property {
     @Column(name = "private_Neighborhood")
     private boolean privateNeighborhood;
     @Column(name = "type_operation")
-    //@Enumerated(EnumType.STRING)
-    private String typeOperation;
+    @Enumerated(EnumType.STRING)
+    private Operation typeOperation;
     private int userId;
     private String ubication;
     private String address;

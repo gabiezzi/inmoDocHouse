@@ -46,7 +46,7 @@ public class PropertyController {
     }
 
 
-    @GetMapping("/pricemin/{pricemin}")
+    @GetMapping("/pricemin/{price}")
     public ResponseEntity<List<Property>> findByPriceLessThanEquals(@PathVariable("price") double price) {
         if(price == 0) {
             return ResponseEntity.noContent().build();
@@ -55,7 +55,7 @@ public class PropertyController {
     }
 
 
-    @GetMapping("/pricemax/{pricemax}")
+    @GetMapping("/pricemax/{price}")
     public ResponseEntity<List<Property>> findByPriceGreaterThanEquals(@PathVariable("price") double price) {
         if(price == 0) {
             return ResponseEntity.noContent().build();
