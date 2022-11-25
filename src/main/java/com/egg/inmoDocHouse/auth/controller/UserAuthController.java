@@ -48,8 +48,8 @@ public class UserAuthController {
 
     }
 
-    @PostMapping("/signin")
-    public ResponseEntity<AuthenticationResponse> signIn(@RequestBody AuthenticationRequest authRequest) throws Exception {
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authRequest) throws Exception {
 
         UserDetails userDetails;
         try {

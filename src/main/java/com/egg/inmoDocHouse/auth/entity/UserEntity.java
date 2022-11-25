@@ -1,18 +1,17 @@
 package com.egg.inmoDocHouse.auth.entity;
 
+import com.egg.inmoDocHouse.auth.enumerations.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Setter
@@ -24,11 +23,26 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Email
+    @Size(min = 8)
     private String username;
 
     @Size(min = 8)
     private String password;
+
+    private int DNI;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateBorn;
+
+    private String adress;
+    private String country;
+    private String state;
+    private int phone;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private int cuit;
 
     private boolean accountNonExpired;
     private boolean accountNonLocked;
