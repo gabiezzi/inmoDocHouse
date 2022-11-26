@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
@@ -17,7 +16,7 @@ import java.util.Date;
 @Setter
 @Getter
 @AllArgsConstructor
-public class UserEntity implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,7 +39,7 @@ public class UserEntity implements UserDetails {
     private int phone;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     private int cuit;
 
@@ -49,7 +48,7 @@ public class UserEntity implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean enabled;
 
-    public UserEntity() {
+    public User() {
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;

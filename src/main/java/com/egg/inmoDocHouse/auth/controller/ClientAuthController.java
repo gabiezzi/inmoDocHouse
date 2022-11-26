@@ -3,9 +3,9 @@ package com.egg.inmoDocHouse.auth.controller;
 
 import com.egg.inmoDocHouse.auth.dto.AuthenticationRequest;
 import com.egg.inmoDocHouse.auth.dto.AuthenticationResponse;
-import com.egg.inmoDocHouse.auth.entity.User;
+import com.egg.inmoDocHouse.auth.entity.Client;
+import com.egg.inmoDocHouse.auth.service.ClientService;
 import com.egg.inmoDocHouse.auth.service.JwtUtils;
-import com.egg.inmoDocHouse.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,28 +22,28 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/auth")
-public class UserAuthController {
+@RequestMapping("/auth/client")
+public class ClientAuthController {
 
-    private UserDetailsCustomService userDetailsCustomService;
+    private ClientService clientService;
     private AuthenticationManager authenticationManager;
     private JwtUtils jwtTokenUtil;
 
     @Autowired
-    public UserAuthController(
-            UserDetailsCustomService userDetailsCustomService,
+    public ClientAuthController(
+            ClientService clientService,
             AuthenticationManager authenticationManager,
             JwtUtils jwtTokenUtil) {
 
-        this.userDetailsCustomService = userDetailsCustomService;
+       this.clientService = clientService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<AuthenticationResponse> signUp(@Valid @RequestBody User user) throws Exception {
+    public ResponseEntity<AuthenticationResponse> signUp(@Valid @RequestBody Client client) throws Exception {
 
-        this.userDetailsCustomService.save(user);
+        this.clientService.save(client);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }

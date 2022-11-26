@@ -1,6 +1,5 @@
 package com.egg.inmoDocHouse.entity;
 
-import com.egg.inmoDocHouse.enumeration.Operation;
 import lombok.*;
 
 import javax.persistence.*;

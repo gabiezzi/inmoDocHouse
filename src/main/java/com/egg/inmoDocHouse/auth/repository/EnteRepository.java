@@ -1,12 +1,12 @@
 package com.egg.inmoDocHouse.auth.repository;
 
-
-import com.egg.inmoDocHouse.auth.entity.User;
+import com.egg.inmoDocHouse.auth.entity.Ente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface EnteRepository extends JpaRepository<Ente, Integer> {
 
-    User findByUsername(String username);
+    Ente findByUsername(String username);
+
 }
