@@ -1,7 +1,6 @@
 package com.egg.inmoDocHouse.auth.config;
 
 
-
 import com.egg.inmoDocHouse.auth.filter.JwtRequestFilter;
 import com.egg.inmoDocHouse.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
+    private static final String[] AUTH_WHITELIST = {
+            //Auth login , signup
+            "/auth/*/*",
+            "/auth/*",
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+            // other public endpoints of your API may be appended to this array
+    };
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(userDetailCustomService)
-                .passwordEncoder(new BCryptPasswordEncoder());;
+                .passwordEncoder(new BCryptPasswordEncoder());
+        ;
 
     }
 
@@ -49,7 +66,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/auth/*/*","/auth/*").permitAll()
+                .authorizeRequests()
+                .antMatchers("/admin/*").hasAnyRole("ADMIN")
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement()

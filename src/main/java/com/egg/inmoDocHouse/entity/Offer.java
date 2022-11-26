@@ -21,10 +21,9 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOffer;
 
-
     private int idPropery;
 
-    private int idCliente;
+    private int idClient;
 
     private int idEnte;
 

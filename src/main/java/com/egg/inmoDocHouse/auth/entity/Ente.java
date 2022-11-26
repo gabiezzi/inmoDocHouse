@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@Table(name = "manager_ente")
 public class Ente extends User {
 
     public Ente() {
