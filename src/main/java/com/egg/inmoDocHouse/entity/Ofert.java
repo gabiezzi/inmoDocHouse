@@ -1,6 +1,6 @@
 package com.egg.inmoDocHouse.entity;
 
-import ch.qos.logback.core.net.server.Client;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ofert {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
