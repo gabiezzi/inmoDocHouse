@@ -1,8 +1,6 @@
 package com.egg.inmoDocHouse.entity;
 
 
-import com.egg.inmoDocHouse.auth.entity.Client;
-import com.egg.inmoDocHouse.auth.entity.Ente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,9 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Offer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOffer;
