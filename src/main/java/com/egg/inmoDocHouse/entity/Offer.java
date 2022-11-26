@@ -21,14 +21,12 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOffer;
 
-    @OneToOne
-    private Property idPropery;
 
-    @OneToOne
-    private Client idCliente;
+    private int idPropery;
 
-    @OneToOne
-    private Ente idEnte;
+    private int idCliente;
+
+    private int idEnte;
 
     private String message;
 

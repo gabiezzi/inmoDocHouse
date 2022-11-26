@@ -4,6 +4,8 @@ package com.egg.inmoDocHouse.auth.controller;
 import com.egg.inmoDocHouse.auth.dto.AuthenticationRequest;
 import com.egg.inmoDocHouse.auth.dto.AuthenticationResponse;
 import com.egg.inmoDocHouse.auth.entity.User;
+import com.egg.inmoDocHouse.auth.service.ClientService;
+import com.egg.inmoDocHouse.auth.service.EnteService;
 import com.egg.inmoDocHouse.auth.service.JwtUtils;
 import com.egg.inmoDocHouse.auth.service.UserDetailsCustomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ import javax.validation.Valid;
 public class UserAuthController {
 
     private UserDetailsCustomService userDetailsCustomService;
+
+    private EnteService enteService;
+    private ClientService clientService;
     private AuthenticationManager authenticationManager;
     private JwtUtils jwtTokenUtil;
 
@@ -33,8 +38,11 @@ public class UserAuthController {
     public UserAuthController(
             UserDetailsCustomService userDetailsCustomService,
             AuthenticationManager authenticationManager,
-            JwtUtils jwtTokenUtil) {
-
+            JwtUtils jwtTokenUtil,
+            ClientService clientService,
+            EnteService enteService) {
+        this.enteService = enteService;
+        this.clientService = clientService;
         this.userDetailsCustomService = userDetailsCustomService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
@@ -48,6 +56,21 @@ public class UserAuthController {
 
     }
 
+    @PostMapping("/client/signup")
+    public ResponseEntity<AuthenticationResponse> signUpClient(@Valid @RequestBody User user) throws Exception {
+
+        this.clientService.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
+    }
+
+    @PostMapping("/ente/signup")
+    public ResponseEntity<AuthenticationResponse> signUpEnte(@Valid @RequestBody User user) throws Exception {
+
+        this.enteService.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
+    }
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authRequest) throws Exception {
 

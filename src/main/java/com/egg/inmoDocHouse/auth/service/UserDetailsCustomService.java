@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class UserDetailsCustomService implements UserDetailsService {
     public boolean save(User userRequest){
         User userEntity = new User();
         userEntity.setUsername(userRequest.getUsername());
-        userEntity.setPassword(userRequest.getPassword());
+        userEntity.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
         userEntity = userRepository.save(userEntity);
 
 

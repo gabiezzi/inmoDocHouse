@@ -13,12 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @Table(name = "manager_ente")
 public class Ente extends User {
-
-    @OneToOne
-    private Offer offer;
 
     public Ente() {
         super();

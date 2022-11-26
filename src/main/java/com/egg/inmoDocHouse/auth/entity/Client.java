@@ -20,50 +20,11 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @Table(name = "client")
-public class Client extends User implements UserDetails {
+public class Client extends User {
 
-    @OneToOne
-    private Offer offer;
-
-    public Client() {
+   public Client() {
         super();
         this.setRole(Role.CLIENT);
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
     }
 }

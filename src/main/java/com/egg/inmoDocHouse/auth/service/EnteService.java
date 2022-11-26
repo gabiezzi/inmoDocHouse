@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,7 +22,7 @@ public class EnteService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Ente ente = enteRepository.findByUsername(username);
         if (ente == null) {
-            throw new UsernameNotFoundException("Username or password not found");
+            throw new UsernameNotFoundException("Manager username or password not found");
 
         }
 
@@ -29,10 +30,11 @@ public class EnteService implements UserDetailsService {
 
     }
 
-    public boolean save(Ente enteRequest) {
+    public boolean save(User enteRequest) {
         Ente ente = new Ente();
         ente.setUsername(enteRequest.getUsername());
-        ente.setPassword(enteRequest.getPassword());
+        //ente.setUsername(enteRequest.getPassword());
+        ente.setPassword(new BCryptPasswordEncoder().encode(enteRequest.getPassword()));
         ente = enteRepository.save(ente);
         return ente != null;
 
