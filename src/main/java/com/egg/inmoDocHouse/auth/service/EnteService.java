@@ -29,7 +29,7 @@ public class EnteService implements UserDetailsService {
 
     }
 
-    public boolean save(User enteRequest) {
+    public boolean save(Ente enteRequest) {
         Ente ente = new Ente();
         ente.setUsername(enteRequest.getUsername());
         ente.setPassword(enteRequest.getPassword());

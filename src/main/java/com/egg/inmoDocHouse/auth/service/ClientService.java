@@ -30,7 +30,7 @@ public class ClientService implements UserDetailsService {
 
     }
 
-    public boolean save(User clientRequest) {
+    public boolean save(Client clientRequest) {
         Client client = new Client();
         client.setUsername(clientRequest.getUsername());
         client.setPassword(clientRequest.getPassword());
