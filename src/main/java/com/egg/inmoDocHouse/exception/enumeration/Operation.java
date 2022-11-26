@@ -1,4 +1,4 @@
-package com.egg.inmoDocHouse.enumeration;
+package com.egg.inmoDocHouse.exception.enumeration;
 
 public enum Operation {
     Rental {
