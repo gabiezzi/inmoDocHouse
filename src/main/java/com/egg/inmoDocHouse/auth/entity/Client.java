@@ -20,7 +20,6 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name = "client")
 public class Client extends User {
 
    public Client() {

@@ -70,7 +70,7 @@ public class AppointmentService {
     }
 
     public Optional<Appointment> getAppointmentByClient(int idClient) throws Exception {
-        Optional<Appointment> appointmentOptional = appointmentRepository.findByClient(idClient);
+        Optional<Appointment> appointmentOptional = appointmentRepository.findByIdClient(idClient);
 
         if (!appointmentOptional.isPresent())
             throw new Exception("There isn't exist an appointment created with that idClient");
