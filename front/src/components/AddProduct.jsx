@@ -21,7 +21,7 @@ export const AddProduct = () => {
         quantityOfBathrooms: '',
         garage: '2',
         expense: '',
-        privateNeighborhood: 'true',
+        privateNeighborhood: '1',
         typeOperation: 'Sale',
         userId: '',
         ubication: ''

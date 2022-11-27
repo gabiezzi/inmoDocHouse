@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/property")
-@CrossOrigin("*")
+@CrossOrigin
 public class PropertyController {
 
     @Autowired
