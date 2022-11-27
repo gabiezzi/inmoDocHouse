@@ -1,8 +1,6 @@
 import { useForm } from 'react-hook-form'
-import { GiMonsterGrasp } from 'react-icons/gi'
 import { Link, useNavigate } from 'react-router-dom'
 import { NavLogin } from '../components/NavLogin'
-import { saveUser } from '../helpers/ProductAxios'
 import '../styles/registration.css'
 export const Registration = () => {
 
@@ -16,7 +14,6 @@ export const Registration = () => {
 
   const onSubmit = (user) => {
     reset();
-    saveUser(user);
     navigate('/login');
   }
 

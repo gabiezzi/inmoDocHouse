@@ -157,8 +157,6 @@ public class PropertyService {
     public Property save(Property property) {
 
         if (validateProperty(property)) {
-
-            System.out.println(property.getAddress());
             List<Property> properties = propertyRepository.findAll();
             properties.forEach(p -> {
                 if(p.getAddress().equals(property.getAddress())){
