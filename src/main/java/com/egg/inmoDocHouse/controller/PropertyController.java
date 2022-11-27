@@ -110,7 +110,7 @@ public class PropertyController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if(id == 0) {
             return ResponseEntity.notFound().build();
@@ -135,7 +135,7 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.findByUbication(ubication));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Property> update(@RequestBody Property updateProperty, @PathVariable("id") int id) {
         if(updateProperty.equals(null) || id == 0) {
             return ResponseEntity.noContent().build();
