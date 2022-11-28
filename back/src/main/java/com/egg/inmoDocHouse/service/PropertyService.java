@@ -186,6 +186,7 @@ public class PropertyService {
             propertyToUpdate.setUserId(updateProperty.getUserId());
             propertyToUpdate.setTypeOperation(updateProperty.getTypeOperation());
             propertyToUpdate.setUbication(updateProperty.getUbication());
+            propertyToUpdate.setAddress(updateProperty.getAddress());
                 return propertyRepository.save(propertyToUpdate);
 
         } else {
