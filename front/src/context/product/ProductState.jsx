@@ -43,10 +43,11 @@ export const ProductState = ({children}) => {
   }
 
   const propertySave = async(property) => {
+
     const prop = await saveProperty(property);
     dispatch({
       type: TYPES.SAVE_PROPERTY,
-      payload: property
+      payload: prop
     })
   }
 

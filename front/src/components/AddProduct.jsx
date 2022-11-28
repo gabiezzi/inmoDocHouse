@@ -14,16 +14,16 @@ export const AddProduct = () => {
     //ESTADO INICIAL DEL FORMULARIO
     const initialForm = {
         id: '',
-        address: '',
-        m2: '',
-        quantityOfAmbiences: '',
-        price: '',
-        quantityOfBathrooms: '',
-        garage: '2',
-        expense: '',
-        privateNeighborhood: '1',
+        address:'' ,
+        m2:null ,
+        quantityOfAmbiences:null,
+        price:null,
+        quantityOfBathrooms:null,
+        garage: 2,
+        expense:null,
+        privateNeighborhood: 1,
         typeOperation: 'Sale',
-        userId: '',
+        userId:null,
         ubication: ''
     }
     //HOOK PARA MANEJAR EL FORM

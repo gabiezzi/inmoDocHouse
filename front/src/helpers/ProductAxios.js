@@ -1,17 +1,17 @@
 import axios from "axios";
 
 export const getAll = async()=>{
-    const {data} = await axios.get('http://localhost:8080/property/getAll'); 
+    const { data } = await axios.get('http://localhost:8080/property/getAll'); 
     return data;
 }
 
 export const getPropertyByAmbiences = async(quantity) => {
-    const {data} = await axios.get(`http://localhost:8080/property/ambiences/${quantity}`);
+    const { data } = await axios.get(`http://localhost:8080/property/ambiences/${quantity}`);
     return data;
 }
 
 export const saveProperty = async(property) => {
-    const {data} = await axios.post('http://localhost:8080/property/save', property);
+    const { data } = await axios.post('http://localhost:8080/property/save', property);
     return data;
 } 
 
@@ -22,7 +22,7 @@ export const deleteProperty = async(id) => {
 export const changeProperty = async(property) => {
     const {id} = property;
     delete property.id;
-    const res = await axios.put(`http://localhost:8080/property/${id}`, property);
+    const res = await axios.put(`http://localhost:8080/property/update/${id}`, property);
     return res;
 }
 
@@ -32,17 +32,17 @@ export const getPropertyByUbication = async(ubication) => {
 }
 
 export const filteredProperty = async({quantity, typeOperation, ubication}) => {
-    const res = await axios.get(`http://localhost:8080/property/filtered/?quantity=${quantity}&typeOperation=${typeOperation}&ubication=${ubication}`);
-    return res.data;
+    const { data } = await axios.get(`http://localhost:8080/property/filtered/?quantity=${quantity}&typeOperation=${typeOperation}&ubication=${ubication}`);
+    return data;
     
 }
 
 export const findByQuantityOfAmbiences = async(quantity) => {
-    const res = await axios.get(`http://localhost:8080/property/ambiences/${quantity}`);
-    return res.data;
+    const { data } = await axios.get(`http://localhost:8080/property/ambiences/${quantity}`);
+    return data;
 }
 
 export const findByTypeOperation = async(typeOperation) => {
-    const res = await axios.get(`http://localhost:8080/property/typeoperation/${typeOperation}`);
-    return res.data;
+    const { data } = await axios.get(`http://localhost:8080/property/typeoperation/${typeOperation}`);
+    return data;
 }
