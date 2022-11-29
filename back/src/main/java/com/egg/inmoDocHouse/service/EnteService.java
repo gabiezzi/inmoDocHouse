@@ -1,5 +1,6 @@
 package com.egg.inmoDocHouse.service;
 
+
 import com.egg.inmoDocHouse.entity.EnteEntity;
 import com.egg.inmoDocHouse.repository.EnteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,20 +48,20 @@ public class EnteService {
         enteRepository.deleteById(id);
     }
 
-    public Optional<EnteEntity> findById(int id) {
+    public Optional<EnteEntity> findById(int id) throws Exception {
         Optional<EnteEntity> enteOptional = enteRepository.findById(id);
 
         if (!enteOptional.isPresent()) {
             throw new Exception("La id de la inmobiliaria/dueño no es valida");
         }
 
-        return enteEntity;
+        return enteOptional;
     }
 
-    public List<EnteEntity> findAll() {
+    public List<EnteEntity> findAll() throws Exception{
         List<EnteEntity> listEnte = (enteRepository.findAll());
 
-        if (!listEnte.isPresent()) {
+        if (!listEnte.isEmpty()) {
             throw new Exception("La lista no devuelve valores: Inmobiliarias / dueños");
         }
         return listEnte;

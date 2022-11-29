@@ -1,5 +1,6 @@
 package com.egg.inmoDocHouse.service;
 
+
 import com.egg.inmoDocHouse.entity.Appointment;
 import com.egg.inmoDocHouse.repository.AppointmentRepository;
 import com.egg.inmoDocHouse.repository.PropertyRepository;

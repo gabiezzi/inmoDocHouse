@@ -1,8 +1,6 @@
 package com.egg.inmoDocHouse.service;
 
 
-
-
 import com.egg.inmoDocHouse.entity.ClientEntity;
 import com.egg.inmoDocHouse.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +46,10 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    public Optional<ClientEntity> findById(int id) {
+    public Optional<ClientEntity> findById(int id) throws Exception {
         Optional<ClientEntity> clientEntity = clientRepository.findById(id);
 
-        if (!client.isPresent()) {
+        if (!clientEntity.isPresent()) {
 
             throw new Exception("La id del cliente no es valida");
         }
@@ -59,10 +57,11 @@ public class ClientService {
         return clientEntity;
     }
 
-    public List<ClientEntity> findAll() {
-        Optional<List<ClientEntity>> listClient = (clientRepository.findAll());
+    public List<ClientEntity> findAll() throws Exception{
 
-        if (!listClient.isPresent()) {
+        List<ClientEntity> listClient = clientRepository.findAll();
+
+        if (!listClient.isEmpty()) {
            throw new Exception("No hay elementos para esta lista: Client");
         }
 
