@@ -27,9 +27,7 @@ public class Offer {
 
     private int idEnte;
 
-    private String message;
-
-    private double price;
+    private double priceOffer;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateMessage;

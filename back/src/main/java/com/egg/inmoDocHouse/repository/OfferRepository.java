@@ -13,7 +13,11 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
     @Override
     List<Offer> findAll();
 
-    Optional<List<Offer>> findByIdClient(int idClient);
+    Optional<List<Offer>> findOfferByIdClientAndAndIdPropery(int idClient, int idProperty);
 
-    Optional<List<Offer>> findByIdEnte(int idEnte);
+    List<Offer> findAllOfferByIdPropery(int idProperty);
+
+    List<Offer> findOfferByIdEnte(int idEnte);
+
+    List<Offer> findOffersByIdClient(int idClient);
 }
