@@ -1,12 +1,13 @@
 package com.egg.inmoDocHouse.service;
 
-import com.egg.inmoDocHouse.entity.Appointment;
 import com.egg.inmoDocHouse.entity.Offer;
 import com.egg.inmoDocHouse.repository.OfferRepository;
 import com.egg.inmoDocHouse.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,18 +21,19 @@ public class OfferService {
 
 
     @Transactional
-    public Offer save(Offer offer, int idProperty, int idEnte, int idClient) throws Exception {
+    public Offer save(Offer offer) throws Exception {
 
         Optional<Offer> offerOptional = offerRepository.findById(offer.getIdOffer());
 
         if (offerOptional.isPresent())
             throw new Exception("There is already an offer created with that id");
 
-        offer.setIdClient(idClient);
-        offer.setIdEnte(idEnte);
-        offer.setIdPropery(idProperty);
 
-        return offer;
+        if (offerRepository.findOfferByIdClientAndAndIdPropery(offer.getIdClient(), offer.getIdPropery()).isPresent()) {
+            throw new Exception("The client already has a previous offer for this property");
+        }
+
+        return offerRepository.save(offer);
     }
 
     @Transactional
@@ -54,27 +56,68 @@ public class OfferService {
     }
 
 
-    public Optional<Offer> findByIdClient(int idClient) throws Exception {
+//    public Optional<Offer> findByIdClient(int idClient) throws Exception {
+//
+//        Optional<Offer> offerOptional = offerRepository.findById(idClient);
+//
+//        if (!offerOptional.isPresent())
+//            throw new Exception("There isn't exist an appointment created with that id");
+//
+//        return offerOptional;
+//    }
 
-        Optional<Offer> offerOptional = offerRepository.findById(idClient);
 
-        if (!offerOptional.isPresent())
-            throw new Exception("There isn't exist an appointment created with that id");
+//    public Optional<Offer> findByIdEnte(int idEnte) throws Exception {
+//
+//        Optional<Offer> offerOptional = offerRepository.findById(idEnte);
+//
+//        if (!offerOptional.isPresent())
+//            throw new Exception("There isn't exist an appointment created with that id");
+//
+//        return offerOptional;
+//    }
 
-        return offerOptional;
+
+    public List<Offer> findAllOfferByIdPropery(int idProperty) throws Exception {
+        List<Offer> offers = offerRepository.findAllOfferByIdPropery(idProperty);
+
+        if (offers.isEmpty()) {
+            throw new Exception("There's not offer yet");
+        }
+
+        return offers;
     }
 
 
-    public Optional<Offer> findByIdEnte(int idEnte) throws Exception {
+    public List<Offer> findOfferByIdEnte(int idEnte) throws Exception{
+        List<Offer> offers = offerRepository.findOfferByIdEnte(idEnte);
 
-        Optional<Offer> offerOptional = offerRepository.findById(idEnte);
+        if (offers.isEmpty()) {
+            throw new Exception("There's not offer yet");
+        }
 
-        if (!offerOptional.isPresent())
-            throw new Exception("There isn't exist an appointment created with that id");
-
-        return offerOptional;
+        return offers;
     }
 
+    public List<Offer> findAllOffer() throws Exception {
+        List<Offer> offers = offerRepository.findAll();
+
+        if (offers.isEmpty()) {
+            throw new Exception("There's not offer yet");
+        }
+
+        return offers;
+    }
+
+    public List<Offer> findOffersByIdClient(int idClient) throws Exception {
+        List<Offer> offers = offerRepository.findOffersByIdClient(idClient);
+
+        if (offers.isEmpty()) {
+            throw new Exception("There's not offer yet");
+        }
+
+        return offers;
+    }
 
 
 
