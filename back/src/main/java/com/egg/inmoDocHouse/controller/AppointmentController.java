@@ -38,11 +38,12 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/delete/{idAppointment}")
-    public ResponseEntity<String> delete(@PathVariable("idAppointment") int idAppointment) {
+    public ResponseEntity<String> delete(@PathVariable("idAppointment") int idAppointment) throws Exception{
         if (idAppointment == 0) {
             ResponseEntity.notFound().build();
         }
 
+        appointmentService.delete(idAppointment);
         return ResponseEntity.ok("Appointment has been deleted");
     }
 
