@@ -9,10 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Registro {
+public class Register {
 
 
 	private String username;
 	private String email;
 	private String password;
+
 }

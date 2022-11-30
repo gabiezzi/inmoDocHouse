@@ -3,7 +3,7 @@ package com.egg.inmoDocHouse.controller;
 import java.util.Collections;
 
 import com.egg.inmoDocHouse.auth.model.Login;
-import com.egg.inmoDocHouse.auth.model.Registro;
+import com.egg.inmoDocHouse.auth.model.Register;
 import com.egg.inmoDocHouse.entity.Rol;
 import com.egg.inmoDocHouse.entity.UserEntity;
 import com.egg.inmoDocHouse.repository.RolRepository;
@@ -49,26 +49,29 @@ public class AuthControlador {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		//obtenemos el token del jwtTokenProvider
-		String token = jwtTokenProvider.generarToken(authentication);
+		String token = jwtTokenProvider.generateToken(authentication);
 		
 		return ResponseEntity.ok(new JWTAuthResponse(token));
 	}
 	
 	@PostMapping("/signin")
-	public ResponseEntity<?> signIn(@RequestBody Registro registro){
-		if(userRepository.existsByUsername(registro.getUsername())) {
+	public ResponseEntity<?> signIn(@RequestBody Register register){
+
+		System.out.println(register.getUsername());
+
+		if(userRepository.existsByUsername(register.getUsername())) {
 			return new ResponseEntity<>("That username already exists",HttpStatus.BAD_REQUEST);
 		}
 		
-		if(userRepository.existsByEmail(registro.getEmail())) {
+		if(userRepository.existsByEmail(register.getEmail())) {
 			return new ResponseEntity<>("That email already exists",HttpStatus.BAD_REQUEST);
 		}
 		
 		UserEntity user = new UserEntity();
 
-		user.setUsername(registro.getUsername());
-		user.setEmail(registro.getEmail());
-		user.setPassword(passwordEncoder.encode(registro.getPassword()));
+		user.setUsername(register.getUsername());
+		user.setEmail(register.getEmail());
+		user.setPassword(passwordEncoder.encode(register.getPassword()));
 		
 		Rol roles = rolRepository.findByRolType("ROLE_ADMIN").get();
 		user.setRol(Collections.singleton(roles));

@@ -30,9 +30,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		String token = obtenerJWTdeLaSolicitud(request);
 		
 		//validamos el token
-		if(StringUtils.hasText(token) && jwtTokenProvider.validarToken(token)) {
+		if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
 			//obtenemos el username del token
-			String username = jwtTokenProvider.obtenerUsernameDelJWT(token);
+			String username = jwtTokenProvider.obtainUsernameJwt(token);
 			
 			//cargamos el usuario asociado al token
 			UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
