@@ -1,20 +1,19 @@
-package com.egg.inmoDocHouse.entity;
+package com.egg.inmoDocHouse.auth.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-
-@Entity
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnteEntity extends UserEntity{
+public class Register {
 
-    private int idOferta;
 
+	private String username;
+	private String email;
+	private String password;
 
 }
