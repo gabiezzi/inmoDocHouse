@@ -1,0 +1,26 @@
+.form-searchbar select{
+ width: 50%;
+ border-radius: 0;
+}
+.form-searchbar button{
+    border-radius: 0;
+}
+.form-searchbar input{
+    border-radius: 0;
+}
+
+
+@media (max-width:575px){
+    .form-searchbar input{
+        width: 75%;
+        text-align: center;
+        
+       }
+       .form-searchbar select{
+        width: 75%;
+       }
+       .form-searchbar button{
+        width: 75%;
+       }
+       
+}

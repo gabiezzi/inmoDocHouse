@@ -1,0 +1,10 @@
+.items{
+    max-height: 88.5vh;
+    overflow-y: scroll;
+}
+@media (max-width:575px) {
+    .items{
+        height: auto;
+        overflow-y: initial;
+    }
+}
