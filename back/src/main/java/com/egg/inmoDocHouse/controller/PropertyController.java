@@ -6,18 +6,21 @@ import com.egg.inmoDocHouse.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/property")
+@RequestMapping("/api/property")
 @CrossOrigin
 public class PropertyController {
 
     @Autowired
     PropertyService propertyService;
 
+
+    @PreAuthorize("hasRole('ADMIN')")
 
     @GetMapping("/{id}")
     public ResponseEntity<Property> findById(@PathVariable("id") int id) {
