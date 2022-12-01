@@ -30,7 +30,7 @@ public class Appointment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAppointment;
 
-    private boolean status;
+    private boolean status; //en espera , aprobada
 
 
 }
