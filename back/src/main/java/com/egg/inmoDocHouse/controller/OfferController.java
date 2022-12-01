@@ -44,7 +44,7 @@ public class OfferController {
     }
 
     @GetMapping("/findAllOfferProperty/{idProperty}")
-    public ResponseEntity<List<Offer>> findAllOfferByIdPropery(@PathVariable("idProperty") int idProperty) throws Exception{
+    public ResponseEntity<List<Offer>> findAllOfferByIdProperty(@PathVariable("idProperty") int idProperty) throws Exception{
         if (idProperty == 0) {
             ResponseEntity.noContent().build();
         }
