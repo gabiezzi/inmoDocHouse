@@ -10,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/property")
 @CrossOrigin
@@ -19,8 +18,6 @@ public class PropertyController {
     @Autowired
     PropertyService propertyService;
 
-
-    @PreAuthorize("hasRole('ADMIN')")
 
     @GetMapping("/{id}")
     public ResponseEntity<Property> findById(@PathVariable("id") int id) {
@@ -113,6 +110,7 @@ public class PropertyController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if(id == 0) {
@@ -121,7 +119,7 @@ public class PropertyController {
         propertyService.delete(id);
         return ResponseEntity.ok("Complete");
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<Property> save(@RequestBody Property property) {
         if (property.equals(null)) {
@@ -137,7 +135,7 @@ public class PropertyController {
         }
         return ResponseEntity.ok(propertyService.findByUbication(ubication));
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<Property> update(@RequestBody Property updateProperty, @PathVariable("id") int id) {
         if(updateProperty.equals(null) || id == 0) {
