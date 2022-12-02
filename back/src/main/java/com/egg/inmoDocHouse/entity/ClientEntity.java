@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +23,9 @@ public class ClientEntity extends UserEntity {
 
     @Temporal(TemporalType.DATE)
     private Date birth;
-    private String lastName;
-    private String lastName;
+
+    private Long dni;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ClientEntity")
+    private List<Appointment> appointment;
 }
