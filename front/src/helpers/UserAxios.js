@@ -7,5 +7,10 @@ export const signin = async(user) => {
 
 export const login = async(user) => {
     const {data} = await axios.post('http://localhost:8080/api/auth/login', user);
+    window.localStorage.setItem('user', JSON.stringify(data));
     return data;
+}
+
+export const logout = () => {
+    window.localStorage.removeItem('user');
 }

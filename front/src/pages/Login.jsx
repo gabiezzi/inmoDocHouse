@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { NavLogin } from '../components/NavLogin'
 import '../styles/login.css'
 import { login } from '../helpers/UserAxios'
 
 export const Login = () => {
 
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState()
+  const navigate = useNavigate();
 
   const { register, formState:{errors}, handleSubmit, reset } = useForm({defaultValues: {
     usernameOrEmail: '',
@@ -18,7 +17,7 @@ export const Login = () => {
   const onSubmit = (user)=> {
     login(user);
     reset();
-    
+    navigate('/propiedades')
   }
 
   
