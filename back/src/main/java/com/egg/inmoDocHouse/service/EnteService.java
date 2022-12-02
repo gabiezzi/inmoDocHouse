@@ -61,7 +61,7 @@ public class EnteService {
     public List<EnteEntity> findAll() throws Exception{
         List<EnteEntity> listEnte = (enteRepository.findAll());
 
-        if (!listEnte.isEmpty()) {
+        if (listEnte.isEmpty()) {
             throw new Exception("La lista no devuelve valores: Inmobiliarias / dueños");
         }
         return listEnte;
