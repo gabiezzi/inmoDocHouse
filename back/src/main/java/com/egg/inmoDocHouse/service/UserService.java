@@ -62,7 +62,7 @@ public class UserService {
 
         List<UserEntity> listUser = userRepository.findAll();
 
-        if (!listUser.isEmpty()) {
+        if (listUser.isEmpty()) {
             throw new Exception("No hay elementos para esta lista: Client");
         }
 

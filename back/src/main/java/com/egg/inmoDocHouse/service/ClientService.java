@@ -61,7 +61,7 @@ public class ClientService {
 
         List<ClientEntity> listClient = clientRepository.findAll();
 
-        if (!listClient.isEmpty()) {
+        if (listClient.isEmpty()) {
            throw new Exception("No hay elementos para esta lista: Client");
         }
 
