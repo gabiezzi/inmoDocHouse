@@ -35,11 +35,11 @@ public class Property {
     private String ubication;
     private String address;
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @JsonManagedReference(value = "property-appointment")
     List<Appointment> appointments;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "ente-property")
     private EnteEntity ente;
 

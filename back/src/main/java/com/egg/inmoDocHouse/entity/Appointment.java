@@ -29,11 +29,11 @@ public class Appointment {
 
     private boolean status; //en espera , aprobada
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "appointment-client")
     private ClientEntity client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "property-appointment")
     private Property property;
 
