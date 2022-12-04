@@ -1,5 +1,6 @@
 package com.egg.inmoDocHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,17 +21,20 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAppointment;
 
-    private int idProperty;
-    private int idClient;
-    private int idEnte;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreation;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAppointment;
 
-    private boolean status;
+    private boolean status; //en espera , aprobada
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "appointment-client")
+    private ClientEntity client;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "property-appointment")
+    private Property property;
 
 }

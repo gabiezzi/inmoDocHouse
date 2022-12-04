@@ -4,8 +4,11 @@ import java.util.Collections;
 
 import com.egg.inmoDocHouse.auth.model.Login;
 import com.egg.inmoDocHouse.auth.model.Register;
+import com.egg.inmoDocHouse.entity.ClientEntity;
+import com.egg.inmoDocHouse.entity.EnteEntity;
 import com.egg.inmoDocHouse.entity.Rol;
-import com.egg.inmoDocHouse.entity.UserEntity;
+import com.egg.inmoDocHouse.repository.ClientRepository;
+import com.egg.inmoDocHouse.repository.EnteRepository;
 import com.egg.inmoDocHouse.repository.RolRepository;
 import com.egg.inmoDocHouse.repository.UserRepository;
 import com.egg.inmoDocHouse.security.JWTAuthResponse;
@@ -23,13 +26,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin
-public class AuthControlador {
+
+public class AuthController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
+	@Autowired
+	private EnteRepository enteRepository;
+
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	@Autowired
 	private RolRepository rolRepository;
@@ -55,26 +65,51 @@ public class AuthControlador {
 	@PostMapping("/signin")
 	public ResponseEntity<?> signIn(@RequestBody Register register){
 
-		System.out.println(register.toString());
 
 		if(userRepository.existsByUsername(register.getUsername())) {
 			return new ResponseEntity<>("That username already exists",HttpStatus.BAD_REQUEST);
 		}
-		
+
 		if(userRepository.existsByEmail(register.getEmail())) {
 			return new ResponseEntity<>("That email already exists",HttpStatus.BAD_REQUEST);
 		}
-		
-		UserEntity user = new UserEntity();
 
-		user.setUsername(register.getUsername());
-		user.setEmail(register.getEmail());
-		user.setPassword(passwordEncoder.encode(register.getPassword()));
-		
-		Rol roles = rolRepository.findByRolType("ROLE_ADMIN").get();
-		user.setRol(Collections.singleton(roles));
-		
-		userRepository.save(user);
-		return new ResponseEntity<>("Usuario registrado exitosamente",HttpStatus.OK);
+		ClientEntity clientEntity = new ClientEntity();
+
+		clientEntity.setUsername(register.getUsername());
+		clientEntity.setEmail(register.getEmail());
+		clientEntity.setPassword(passwordEncoder.encode(register.getPassword()));
+
+
+		Rol roles = rolRepository.findByRolType("ROLE_CLIENT").get();
+		clientEntity.setRol(Collections.singleton(roles));
+
+		clientRepository.save(clientEntity);
+		return new ResponseEntity<>("Cliente registrado exitosamente",HttpStatus.OK);
+	}
+
+	@PostMapping("/signente")
+	public ResponseEntity<?> signEnte(@RequestBody Register register){
+
+		if(userRepository.existsByUsername(register.getUsername())) {
+			return new ResponseEntity<>("That username already exists",HttpStatus.BAD_REQUEST);
+		}
+
+		if(userRepository.existsByEmail(register.getEmail())) {
+			return new ResponseEntity<>("That email already exists",HttpStatus.BAD_REQUEST);
+		}
+
+		EnteEntity enteEntity = new EnteEntity();
+
+		enteEntity.setUsername(register.getUsername());
+		enteEntity.setEmail(register.getEmail());
+		enteEntity.setPassword(passwordEncoder.encode(register.getPassword()));
+
+
+		Rol roles = rolRepository.findByRolType("ROLE_CLIENT").get();
+		enteEntity.setRol(Collections.singleton(roles));
+
+		enteRepository.save(enteEntity);
+		return new ResponseEntity<>("Cliente registrado exitosamente",HttpStatus.OK);
 	}
 }

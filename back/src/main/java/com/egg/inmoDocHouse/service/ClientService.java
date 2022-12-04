@@ -46,6 +46,8 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
+
+
     public Optional<ClientEntity> findById(int id) throws Exception {
         Optional<ClientEntity> clientEntity = clientRepository.findById(id);
 
@@ -61,10 +63,12 @@ public class ClientService {
 
         List<ClientEntity> listClient = clientRepository.findAll();
 
-        if (!listClient.isEmpty()) {
+        if (listClient.isEmpty()) {
            throw new Exception("No hay elementos para esta lista: Client");
         }
 
         return listClient;
     }
+
+
 }

@@ -2,7 +2,10 @@ package com.egg.inmoDocHouse.service;
 
 
 import com.egg.inmoDocHouse.entity.Appointment;
+import com.egg.inmoDocHouse.entity.ClientEntity;
+import com.egg.inmoDocHouse.entity.Property;
 import com.egg.inmoDocHouse.repository.AppointmentRepository;
+import com.egg.inmoDocHouse.repository.ClientRepository;
 import com.egg.inmoDocHouse.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +19,13 @@ import java.util.Optional;
 public class AppointmentService {
 
     @Autowired
-    AppointmentRepository appointmentRepository;
+    private AppointmentRepository appointmentRepository;
 
     @Autowired
-    PropertyRepository propertyRepository;
+    private PropertyRepository propertyRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
 
     @Transactional
@@ -30,8 +36,8 @@ public class AppointmentService {
         if (appointmentOptional.isPresent())
             throw new Exception("There is already an appointment created with that id");
 
-        if (appointmentRepository.findAppointmentByIdClientAndIdEnte(appointment.getIdClient(),appointment.getIdEnte()).isPresent())
-            throw new Exception("There is already an appointment created with that Client and Manager");
+        //if (appointmentRepository.findAppointmentByIdClientAndIdEnte(appointment.getIdClient(),appointment.getIdEnte()).isPresent())
+          //  throw new Exception("There is already an appointment created with that Client and Manager");
 
 
         appointment.setDateCreation(new Date());
@@ -45,7 +51,7 @@ public class AppointmentService {
         if (!appointmentOptional.isPresent())
             throw new Exception("There isn't exist an appointment created with that id");
 
-        return appointmentUpdate;
+        return save(appointmentUpdate);
     }
 
     @Transactional
@@ -67,7 +73,7 @@ public class AppointmentService {
         return appointmentOptional;
     }
 
-    public Optional<Appointment> getAppointmentByDateAppointment(Date dateAppointment) throws Exception {
+    /* public Optional<Appointment> getAppointmentByDateAppointment(Date dateAppointment) throws Exception {
          Optional<Appointment> appointmentOptional = appointmentRepository.findByDateAppointment(dateAppointment);
 
 
@@ -75,16 +81,8 @@ public class AppointmentService {
             throw new Exception("There isn't exist an appointment created with that date");
 
          return appointmentOptional;
-    }
+    } */
 
-    public Optional<Appointment> getAppointmentByClient(int idClient) throws Exception {
-        Optional<Appointment> appointmentOptional = appointmentRepository.findByIdClient(idClient);
-
-        if (!appointmentOptional.isPresent())
-            throw new Exception("There isn't exist an appointment created with that idClient");
-
-        return appointmentOptional;
-    }
 
     public List<Appointment> findAll() throws Exception{
         List<Appointment> listAppointment = appointmentRepository.findAll();
@@ -96,23 +94,50 @@ public class AppointmentService {
         return listAppointment;
     }
 
-    public List<Appointment> findAllByIdEnte(int idEnte) throws Exception{
-        List<Appointment> listAppointmentEnte = appointmentRepository.findAllByIdEnte(idEnte);
+    public List<Appointment> findAllByClientId(int clientId) throws Exception{
+        List<Appointment> listAppointmentClient = appointmentRepository.findAllByClientId(clientId);
 
-        if (listAppointmentEnte.isEmpty()){
-            throw new Exception("There's not appointment yet.");
+        if (listAppointmentClient.isEmpty()){
+            throw new Exception("There's no list for this client.");
         }
 
-        return listAppointmentEnte;
+        return listAppointmentClient;
     }
 
-    public List<Appointment> findAllByIdProperty(int idProperty) throws Exception{
-        List<Appointment> listAppointmentProperty = appointmentRepository.findAllByIdProperty(idProperty);
+
+    public List<Appointment> findAllByPropertyId(int propertyId) throws Exception{
+        List<Appointment> listAppointmentProperty = appointmentRepository.findAllByPropertyId(propertyId);
 
         if (listAppointmentProperty.isEmpty()){
             throw new Exception("There's not appointment yet.");
         }
 
         return listAppointmentProperty;
+    }
+
+    public Appointment updateClientProperty(int appointmentId, int clientId, int propertyId) throws Exception {
+
+
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(appointmentId);
+
+
+        Optional<ClientEntity> optionalClient = clientRepository.findById(clientId);
+
+        Optional<Property> optionalProperty = propertyRepository.findById(propertyId);
+
+        if (!optionalClient.isPresent())
+            throw new Exception("There isn't exist a client created with that id");
+
+        if (!optionalProperty.isPresent())
+            throw new Exception("There isn't exist a property created with that id");
+
+        if (!appointmentOptional.isPresent())
+            throw new Exception("There isn't exist an appointment created with that id");
+
+
+        appointmentOptional.get().setClient(optionalClient.get());
+        appointmentOptional.get().setProperty(optionalProperty.get());
+
+        return appointmentRepository.save(appointmentOptional.get());
     }
 }
