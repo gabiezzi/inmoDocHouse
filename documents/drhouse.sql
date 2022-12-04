@@ -20,7 +20,7 @@ USE `drhouse` ;
 -- -----------------------------------------------------
 -- Table `drhousee`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `drhousee`.`users` (
+CREATE TABLE IF NOT EXISTS `drhouse`.`users` (
   `dtype` VARCHAR(31) NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NULL DEFAULT NULL,
