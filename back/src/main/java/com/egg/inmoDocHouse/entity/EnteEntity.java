@@ -1,11 +1,14 @@
 package com.egg.inmoDocHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -15,9 +18,12 @@ import java.util.List;
 @NoArgsConstructor
 public class EnteEntity extends UserEntity{
 
-    private int idOferta;
+
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "EnteEntity")
-    private List<Property> property;
+    @OneToMany(mappedBy = "ente", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "ente-property")
+    List<Property> properties;
+
+
 }

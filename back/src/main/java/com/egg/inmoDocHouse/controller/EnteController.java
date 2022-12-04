@@ -1,6 +1,5 @@
 package com.egg.inmoDocHouse.controller;
 
-import com.egg.inmoDocHouse.entity.ClientEntity;
 import com.egg.inmoDocHouse.entity.EnteEntity;
 import com.egg.inmoDocHouse.service.EnteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,19 +44,28 @@ public class EnteController {
         }
     }
 
+
     @GetMapping("/getAll")
     public ResponseEntity<List<EnteEntity>> findAll() throws Exception {
         return ResponseEntity.ok(enteService.findAll());
     }
 
-    @GetMapping("/byEnte/{enteId}")
-    public ResponseEntity<EnteEntity>findByUserId(@PathVariable("enteId") int enteId) throws Exception {
+
+
+    @GetMapping("/getOne/{enteId}")
+    public ResponseEntity<EnteEntity>findByEnteId(@PathVariable("enteId") int enteId) throws Exception {
+
+
 
         EnteEntity enteEntity = enteService.findById(enteId).orElse(null);
+
+        System.out.println(enteEntity.getUsername());
 
         if(enteEntity.equals(null)) {
             return ResponseEntity.noContent().build();
         }
+
+
         return new ResponseEntity<>( enteEntity , HttpStatus.OK);
     }
 }

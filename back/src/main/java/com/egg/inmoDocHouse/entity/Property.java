@@ -1,8 +1,11 @@
 package com.egg.inmoDocHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,8 +32,15 @@ public class Property {
     @Column(name = "type_operation")
 //    @Enumerated(EnumType.STRING)
     private String typeOperation;
-    private int userId;
     private String ubication;
     private String address;
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "property-appointment")
+    List<Appointment> appointments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "ente-property")
+    private EnteEntity ente;
 
 }

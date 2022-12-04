@@ -11,6 +11,7 @@ import { AddProduct } from './components/AddProduct'
 import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
 import { ForgotPassword } from './pages/ForgotPassword'
+import { UserState } from './context/user/UserState'
 
 function App() {
 
@@ -18,16 +19,18 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <ProductState>
-          <Routes>
-            <Route path='/propiedades' element={ <ProductPage/> } />
-            <Route path='/filtros' element={ <ProductsFiltered/> } />
-            <Route path='/' element={ <Home/> } />
-            <Route path='/propiedad/registro'element={ <AddProduct/> } />
-            <Route path='*' element={ <NotFoundPage/> } />
-            <Route path='/login' element={ <Login/> } />
-            <Route path='/registro' element={ <Registration/>} />
-            <Route path='/recuperar' element={ <ForgotPassword/> } />
-          </Routes>
+          <UserState>
+            <Routes>
+              <Route path='/propiedades' element={ <ProductPage/> } />
+              <Route path='/filtros' element={ <ProductsFiltered/> } />
+              <Route path='/' element={ <Home/> } />
+              <Route path='/propiedad/registro'element={ <AddProduct/> } />
+              <Route path='*' element={ <NotFoundPage/> } />
+              <Route path='/login' element={ <Login/> } />
+              <Route path='/registro' element={ <Registration/>} />
+              <Route path='/recuperar' element={ <ForgotPassword/> } />
+            </Routes>
+          </UserState>
         </ProductState>
       </BrowserRouter>
     </div>

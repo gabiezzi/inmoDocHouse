@@ -7,14 +7,12 @@ import com.egg.inmoDocHouse.auth.model.Register;
 import com.egg.inmoDocHouse.entity.ClientEntity;
 import com.egg.inmoDocHouse.entity.EnteEntity;
 import com.egg.inmoDocHouse.entity.Rol;
-import com.egg.inmoDocHouse.entity.UserEntity;
 import com.egg.inmoDocHouse.repository.ClientRepository;
 import com.egg.inmoDocHouse.repository.EnteRepository;
 import com.egg.inmoDocHouse.repository.RolRepository;
 import com.egg.inmoDocHouse.repository.UserRepository;
 import com.egg.inmoDocHouse.security.JWTAuthResponse;
 import com.egg.inmoDocHouse.security.JwtTokenProvider;
-import com.egg.inmoDocHouse.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +21,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin
+
 public class AuthController {
 
 	@Autowired
@@ -67,6 +64,7 @@ public class AuthController {
 	
 	@PostMapping("/signin")
 	public ResponseEntity<?> signIn(@RequestBody Register register){
+
 
 		if(userRepository.existsByUsername(register.getUsername())) {
 			return new ResponseEntity<>("That username already exists",HttpStatus.BAD_REQUEST);

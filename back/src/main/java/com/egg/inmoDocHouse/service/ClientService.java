@@ -46,6 +46,8 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
+
+
     public Optional<ClientEntity> findById(int id) throws Exception {
         Optional<ClientEntity> clientEntity = clientRepository.findById(id);
 

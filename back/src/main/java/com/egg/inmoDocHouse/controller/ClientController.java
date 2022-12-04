@@ -2,8 +2,6 @@ package com.egg.inmoDocHouse.controller;
 
 
 import com.egg.inmoDocHouse.entity.ClientEntity;
-import com.egg.inmoDocHouse.entity.EnteEntity;
-import com.egg.inmoDocHouse.entity.Property;
 import com.egg.inmoDocHouse.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,14 +49,20 @@ public class ClientController {
         return ResponseEntity.ok(clientService.findAll());
     }
 
-    @GetMapping("/byclient/{clientId}")
+    @GetMapping("/getOne/{clientId}")
     public ResponseEntity<ClientEntity>findByUserId(@PathVariable("clientId") int clientId) throws Exception {
 
+        System.out.println(clientId);
+
         ClientEntity clientEntity = clientService.findById(clientId).orElse(null);
+
+        System.out.println(clientEntity.getUsername());
 
         if(clientEntity.equals(null)) {
             return ResponseEntity.noContent().build();
         }
+
+
         return new ResponseEntity<>( clientEntity , HttpStatus.OK);
     }
 

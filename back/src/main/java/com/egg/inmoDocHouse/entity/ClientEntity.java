@@ -1,5 +1,6 @@
 package com.egg.inmoDocHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ClientEntity extends UserEntity {
 
-    private int idOferta;
+
     private String lastName;
     private String firstName;
 
@@ -26,6 +27,7 @@ public class ClientEntity extends UserEntity {
 
     private Long dni;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ClientEntity")
-    private List<Appointment> appointment;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "appointment-client")
+     List<Appointment> appointments;
 }

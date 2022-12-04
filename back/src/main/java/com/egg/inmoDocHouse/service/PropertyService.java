@@ -1,10 +1,9 @@
 package com.egg.inmoDocHouse.service;
 
+import com.egg.inmoDocHouse.entity.EnteEntity;
 import com.egg.inmoDocHouse.entity.Property;
-import com.egg.inmoDocHouse.exception.PropertyCreateException;
-import com.egg.inmoDocHouse.exception.PropertyException;
+import com.egg.inmoDocHouse.repository.EnteRepository;
 import com.egg.inmoDocHouse.repository.PropertyRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +15,9 @@ public class PropertyService {
 
     @Autowired
     PropertyRepository propertyRepository;
+
+    @Autowired
+    private EnteRepository enteRepository;
 
     public List<Property> findByM2(double m2) {
 
@@ -42,7 +44,7 @@ public class PropertyService {
 
     }
 
-    public List<Property> findByPriceLessThanEquals(double price)  {
+    public List<Property> findByPriceLessThanEquals(double price) {
 
         if (price != 0) {
             return propertyRepository.findByPriceLessThanEqual(price).orElse(null);
@@ -100,7 +102,7 @@ public class PropertyService {
         }
     }
 
-    public List<Property> findByTypeOperation(String typeOperation){
+    public List<Property> findByTypeOperation(String typeOperation) {
 
         if (!typeOperation.equals(null) || typeOperation.isEmpty()) {
             return propertyRepository.findByTypeOperation(typeOperation).orElse(null);
@@ -113,7 +115,7 @@ public class PropertyService {
     }
 
     public List<Property> findAll() {
-            return propertyRepository.findAll();
+        return propertyRepository.findAll();
     }
 
     public Property findById(int userId) {
@@ -128,10 +130,11 @@ public class PropertyService {
 
 
     }
-    public List<Property> findByUserId(int userId) {
 
-        if (userId != 0) {
-            return propertyRepository.findByUserId(userId).orElse(null);
+    public List<Property> findAllByEnteId(int enteId) {
+
+        if (enteId != 0) {
+            return propertyRepository.findAllByEnteId(enteId).orElse(null);
 
         } else {
 
@@ -159,8 +162,8 @@ public class PropertyService {
         if (validateProperty(property)) {
             List<Property> properties = propertyRepository.findAll();
             properties.forEach(p -> {
-                if(p.getAddress().equals(property.getAddress())){
-                    throw new PropertyException();
+                if (p.getAddress().equals(property.getAddress())) {
+                    throw new IllegalArgumentException("Address already created");
                 }
             });
 
@@ -174,8 +177,8 @@ public class PropertyService {
     public Property update(Property updateProperty, int id) {
 
         Property propertyToUpdate = propertyRepository.findById(id).get();
-        if (validateProperty(updateProperty)  ) {
-            //propertyToUpdate.setId(propertyToUpdate.getId());
+        if (validateProperty(updateProperty)) {
+
             propertyToUpdate.setM2(updateProperty.getM2());
             propertyToUpdate.setGarage(updateProperty.isGarage());
             propertyToUpdate.setPrice(updateProperty.getPrice());
@@ -183,15 +186,35 @@ public class PropertyService {
             propertyToUpdate.setQuantityOfAmbiences(updateProperty.getQuantityOfAmbiences());
             propertyToUpdate.setPrivateNeighborhood(updateProperty.isPrivateNeighborhood());
             propertyToUpdate.setQuantityOfBathrooms(updateProperty.getQuantityOfBathrooms());
-            propertyToUpdate.setUserId(updateProperty.getUserId());
+            propertyToUpdate.setEnte(updateProperty.getEnte());
             propertyToUpdate.setTypeOperation(updateProperty.getTypeOperation());
             propertyToUpdate.setUbication(updateProperty.getUbication());
             propertyToUpdate.setAddress(updateProperty.getAddress());
-                return propertyRepository.save(propertyToUpdate);
+            return propertyRepository.save(propertyToUpdate);
 
         } else {
             throw new NullPointerException();
         }
+    }
+
+    @Transactional
+    public Property updateEnte(int enteId, int propertyId) throws Exception {
+
+
+        if (!enteRepository.findById(enteId).isPresent())
+            throw new Exception("There isn't exist a client created with that id");
+
+        if (!propertyRepository.findById(propertyId).isPresent())
+            throw new Exception("There isn't exist a property created with that id");
+
+        EnteEntity ente = enteRepository.findById(enteId).get();
+
+        Property property = propertyRepository.findById(propertyId).get();
+
+
+        property.setEnte(ente);
+
+        return propertyRepository.save(property);
     }
 
     @Transactional
@@ -210,34 +233,34 @@ public class PropertyService {
 
     public boolean validateProperty(Property property) {
 
-        if(property.getId() == 0 &
+        if (property.getId() == 0 &
                 property.getM2() == 0 &
                 property.getQuantityOfAmbiences() == 0 &
                 property.getQuantityOfBathrooms() == 0 &
-                property.getExpense() == 0 &
+                property.getExpense() == 0
 //                !property.getTypeOperation().equals(null) || !property.equals("") &
 //                !property.getUbication().equals(null) || !property.equals("") &
-                property.getUserId() == 0){
-
-            throw new PropertyCreateException();
+            //property.getEnte().equals(null)){
+        ) {
+            throw new NullPointerException("Property has an attribute null");
         }
         return true;
     }
 
-    public List<Property> searchWithFilters(String ubication, String typeOperation,int quantity){
-        if(ubication.isEmpty() && typeOperation.isEmpty() && quantity == 0){
-            throw  new IllegalArgumentException();
-        }else if(quantity == 0){
-            return propertyRepository.findByUbicationAndTypeOperation(ubication,typeOperation).get();
+    public List<Property> searchWithFilters(String ubication, String typeOperation, int quantity) {
+        if (ubication.isEmpty() && typeOperation.isEmpty() && quantity == 0) {
+            throw new IllegalArgumentException();
+        } else if (quantity == 0) {
+            return propertyRepository.findByUbicationAndTypeOperation(ubication, typeOperation).get();
         } else if (typeOperation.isEmpty() && quantity == 0) {
             return propertyRepository.findByUbication(ubication).get();
-        } else if (typeOperation.isEmpty() && typeOperation.isEmpty()){
+        } else if (typeOperation.isEmpty() && typeOperation.isEmpty()) {
             return propertyRepository.findByQuantityOfAmbiences(quantity).get();
         }
 
 
         return propertyRepository.findByUbicationAndTypeOperationAndQuantityOfAmbiences(ubication,
-                typeOperation,quantity).get();
+                typeOperation, quantity).get();
     }
 
 

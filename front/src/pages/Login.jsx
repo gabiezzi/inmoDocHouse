@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { NavLogin } from '../components/NavLogin'
 import '../styles/login.css'
+import { login } from '../helpers/UserAxios'
 
 export const Login = () => {
 
+  const navigate = useNavigate();
+
   const { register, formState:{errors}, handleSubmit, reset } = useForm({defaultValues: {
-    user: '',
+    usernameOrEmail: '',
     password: ''
   }});
 
-
   const onSubmit = (user)=> {
-    console.log(user);
+    login(user);
     reset();
-    
+    navigate('/propiedades')
   }
+
+  
 
   return (
     <>
@@ -28,12 +32,12 @@ export const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="form-label">Usuario</label>
-              <input type="text" name="" id="" className="form-control" {...register('user', { required: true })} />
-              {errors.user?.type === 'required' && <p className='alert alert-danger'>Debe ingresar el usuario</p> }
+              <input type="text" placeholder='Ingrese usuario o email' className="form-control" {...register('usernameOrEmail', { required: true })} />
+              {errors.usernameOrEmail?.type === 'required' && <p className='alert alert-danger'>Debe ingresar el usuario</p> }
             </div>
             <div className="my-4">
               <label className="form-label">Contraseña</label>
-              <input type="password" name="" id="" className="form-control" {...register('password', { required: true })}/>
+              <input type="password" placeholder='Ingrese su contraseña' className="form-control" {...register('password', { required: true })}/>
               {errors.password?.type === 'required' && <p className='alert alert-danger'>Debe ingresar la contraseña</p> }
             </div>
             <div>

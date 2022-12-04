@@ -1,4 +1,4 @@
--- MySQL Workbench Forward Engineering
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -12,46 +12,37 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema drhouse
+-- Schema drhousee
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `drhouse` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `drhouse` ;
 
 -- -----------------------------------------------------
--- Table `drhouse`.`appointment`
+-- Table `drhousee`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `drhouse`.`appointment` (
-  `id_appointment` INT NOT NULL AUTO_INCREMENT,
-  `date_appointment` DATETIME NULL DEFAULT NULL,
-  `date_creation` DATETIME NULL DEFAULT NULL,
-  `id_client` INT NOT NULL,
-  `id_ente` INT NOT NULL,
-  `id_property` INT NOT NULL,
-  `status` BIT(1) NOT NULL,
-  PRIMARY KEY (`id_appointment`))
+CREATE TABLE IF NOT EXISTS `drhouse`.`users` (
+  `dtype` VARCHAR(31) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `username` VARCHAR(255) NULL DEFAULT NULL,
+  `birth` DATE NULL DEFAULT NULL,
+  `dni` BIGINT NULL DEFAULT NULL,
+  `first_name` VARCHAR(255) NULL DEFAULT NULL,
+  `id_oferta` INT NULL DEFAULT NULL,
+  `last_name` VARCHAR(255) NULL DEFAULT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `UKlgkd7iin2rkv9xkrkvdf6do2v` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `UK6j5t70rd2eub907qysjvvd76n` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `drhouse`.`offer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `drhouse`.`offer` (
-  `id_offer` INT NOT NULL AUTO_INCREMENT,
-  `date_message` DATETIME NULL DEFAULT NULL,
-  `id_client` INT NOT NULL,
-  `id_ente` INT NOT NULL,
-  `id_propery` INT NOT NULL,
-  `price_offer` DOUBLE NOT NULL,
-  PRIMARY KEY (`id_offer`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `drhouse`.`property`
+-- Table `drhousee`.`property`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `drhouse`.`property` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -66,14 +57,48 @@ CREATE TABLE IF NOT EXISTS `drhouse`.`property` (
   `type_operation` VARCHAR(255) NULL DEFAULT NULL,
   `ubication` VARCHAR(255) NULL DEFAULT NULL,
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`))
+  `ente_id` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKryyr2l1d6gvl7jl13b3mkmp5n` (`ente_id` ASC) VISIBLE,
+  CONSTRAINT `FKryyr2l1d6gvl7jl13b3mkmp5n`
+    FOREIGN KEY (`ente_id`)
+    REFERENCES `drhouse`.`users` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `drhouse`.`rol`
+-- Table `drhousee`.`appointment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `drhouse`.`appointment` (
+  `id_appointment` INT NOT NULL AUTO_INCREMENT,
+  `date_appointment` DATETIME NULL DEFAULT NULL,
+  `date_creation` DATETIME NULL DEFAULT NULL,
+  `id_client` INT NULL DEFAULT NULL,
+  `id_ente` INT NULL DEFAULT NULL,
+  `id_property` INT NULL DEFAULT NULL,
+  `status` BIT(1) NULL DEFAULT NULL,
+  `client_id` INT NULL DEFAULT NULL,
+  `property_id` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id_appointment`),
+  INDEX `FKhu6lhu322bx3sk8q6w3ker5q1` (`client_id` ASC) VISIBLE,
+  INDEX `FK3nn23n0bnccqx56jr2ucfjwy5` (`property_id` ASC) VISIBLE,
+  CONSTRAINT `FK3nn23n0bnccqx56jr2ucfjwy5`
+    FOREIGN KEY (`property_id`)
+    REFERENCES `drhouse`.`property` (`id`),
+  CONSTRAINT `FKhu6lhu322bx3sk8q6w3ker5q1`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `drhouse`.`users` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `drhousee`.`rol`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `drhouse`.`rol` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -86,26 +111,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `drhouse`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `drhouse`.`users` (
-  `dtype` VARCHAR(31) NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NULL DEFAULT NULL,
-  `password` VARCHAR(255) NULL DEFAULT NULL,
-  `username` VARCHAR(255) NULL DEFAULT NULL,
-  `id_oferta` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `UKlgkd7iin2rkv9xkrkvdf6do2v` (`username` ASC) VISIBLE,
-  UNIQUE INDEX `UK6j5t70rd2eub907qysjvvd76n` (`email` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `drhouse`.`user_roles`
+-- Table `drhousee`.`user_roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `drhouse`.`user_roles` (
   `users_id` INT NOT NULL,
@@ -128,14 +134,34 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
+-- -----------------------------------------------------
+-- Roles
+-- -----------------------------------------------------
+
 INSERT INTO `drhouse`.`rol` (`id`, `rol_type`) VALUES ('1', 'ROLE_ADMIN');
 INSERT INTO `drhouse`.`rol` (`id`, `rol_type`) VALUES ('2', 'ROLE_USER');
 INSERT INTO `drhouse`.`rol` (`id`, `rol_type`) VALUES ('3', 'ROLE_CLIENT');
 INSERT INTO `drhouse`.`rol` (`id`, `rol_type`) VALUES ('4', 'ROLE_ENTE');
 
+-- -----------------------------------------------------
+-- USers
+-- -----------------------------------------------------
 
-INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('UserEntity', '1', 'admin@admin.com', '$2a$10$vNyCEpM/Wrc2Q1YXbbUVgutfe6hkjo5ewtz4qN.yZurjmRGkQkRRi', 'admin');
-INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('UserEntity', '2', 'user@user.com', '$2a$10$vNyCEpM/Wrc2Q1YXbbUVgutfe6hkjo5ewtz4qN.yZurjmRGkQkRRi', 'user');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('UserEntity', '1', 'admin@admin.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'admin');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('EnteEntity', '2', 'rodriguez@g.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'Ente Rodriguez');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('EnteEntity', '3', 'perez@g.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'Ente Perez');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('ClientEntity', '4', 'gab@g.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'Gabi Cliente');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('ClientEntity', '5', 'fer@g.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'Fer Cliente');
+INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) VALUES ('ClientEntity', '6', 'leo@g.com', '$2a$10$XK6o0T95JDePrsaSmOEZVu.1XQ72kxrQrXuazWddBzlSyBo18H/dq', 'Leo Cliente');
+
+-- -----------------------------------------------------
+-- Properties
+-- -----------------------------------------------------
 
 INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('1', '1');
-INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('2', '2');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('2', '4');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('3', '4');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('4', '3');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('5', '3');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('6', '3');
+
