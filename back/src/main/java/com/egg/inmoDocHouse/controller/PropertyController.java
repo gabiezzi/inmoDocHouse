@@ -127,6 +127,7 @@ public class PropertyController {
         if (property.equals(null)) {
             ResponseEntity.noContent().build();
         }
+
         return ResponseEntity.ok(propertyService.save(property));
     }
 
