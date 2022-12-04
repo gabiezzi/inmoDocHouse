@@ -157,3 +157,11 @@ INSERT INTO `drhouse`.`users` (`dtype`, `id`, `email`, `password`, `username`) V
 -- -----------------------------------------------------
 -- Properties
 -- -----------------------------------------------------
+
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('1', '1');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('2', '4');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('3', '4');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('4', '3');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('5', '3');
+INSERT INTO `drhouse`.`user_roles` (`users_id`, `rol_id`) VALUES ('6', '3');
+
