@@ -87,10 +87,10 @@ CREATE TABLE IF NOT EXISTS `drhouse`.`appointment` (
   INDEX `FK3nn23n0bnccqx56jr2ucfjwy5` (`property_id` ASC) VISIBLE,
   CONSTRAINT `FK3nn23n0bnccqx56jr2ucfjwy5`
     FOREIGN KEY (`property_id`)
-    REFERENCES `drhousee`.`property` (`id`),
+    REFERENCES `drhouse`.`property` (`id`),
   CONSTRAINT `FKhu6lhu322bx3sk8q6w3ker5q1`
     FOREIGN KEY (`client_id`)
-    REFERENCES `drhousee`.`users` (`id`))
+    REFERENCES `drhouse`.`users` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `drhouse`.`user_roles` (
   INDEX `FKkr7yskpjcsflkxp58y6vb5u6k` (`rol_id` ASC) VISIBLE,
   CONSTRAINT `FK3tnppipj0gxlgi8jugl8kb8ww`
     FOREIGN KEY (`users_id`)
-    REFERENCES `drhousee`.`users` (`id`),
+    REFERENCES `drhouse`.`users` (`id`),
   CONSTRAINT `FKkr7yskpjcsflkxp58y6vb5u6k`
     FOREIGN KEY (`rol_id`)
     REFERENCES `drhouse`.`rol` (`id`))
