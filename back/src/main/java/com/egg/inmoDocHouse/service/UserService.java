@@ -1,6 +1,5 @@
 package com.egg.inmoDocHouse.service;
 
-import com.egg.inmoDocHouse.entity.ClientEntity;
 import com.egg.inmoDocHouse.entity.UserEntity;
 import com.egg.inmoDocHouse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

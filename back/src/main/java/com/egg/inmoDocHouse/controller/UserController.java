@@ -1,7 +1,6 @@
 package com.egg.inmoDocHouse.controller;
 
 
-import com.egg.inmoDocHouse.entity.ClientEntity;
 import com.egg.inmoDocHouse.entity.UserEntity;
 import com.egg.inmoDocHouse.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(userService.save(userEntity));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity<UserEntity> update(@RequestBody UserEntity userEntity) throws Exception {
         if(userEntity.equals(null)) {
             return ResponseEntity.noContent().build();

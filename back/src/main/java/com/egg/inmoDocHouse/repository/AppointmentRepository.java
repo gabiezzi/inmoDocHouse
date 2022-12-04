@@ -13,13 +13,8 @@ import java.util.Optional;
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
     Optional<Appointment> findByDateAppointment(Date dateAppointment);
 
-    Optional<Appointment> findByIdClient(int idClient);
-
-    Optional<Appointment> findAppointmentByIdClientAndIdEnte(int idClient, int idEnte);
+    List<Appointment> findAllByClientId(int ClientId);
 
     List<Appointment> findAll();
-
-    List<Appointment> findAllByIdEnte(int idEnte);
-
-    List<Appointment> findAllByIdProperty(int idProperty);
+    List<Appointment> findAllByPropertyId(int propertyId);
 }

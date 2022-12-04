@@ -6,7 +6,6 @@ import com.egg.inmoDocHouse.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +20,7 @@ public class PropertyController {
     PropertyService propertyService;
 
 
-    @PreAuthorize("hasRole('ADMIN')")
-
-    @GetMapping("/{id}")
+    @GetMapping("/getOne/{id}")
     public ResponseEntity<Property> findById(@PathVariable("id") int id) {
         if(id == 0) {
             return ResponseEntity.noContent().build();
@@ -99,12 +96,12 @@ public class PropertyController {
     }
 
 
-    @GetMapping("/byuser/{userId}")
-    public ResponseEntity<List<Property>> findByUserId(@PathVariable("userId") int userId) {
-        if(userId == 0) {
+    @GetMapping("/byente/{enteId}")
+    public ResponseEntity<List<Property>> findAllByEnteId(@PathVariable("enteId") int enteId) {
+        if(enteId == 0) {
             return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity<List<Property>>( propertyService.findByUserId(userId), HttpStatus.OK);
+        return new ResponseEntity<List<Property>>( propertyService.findAllByEnteId(enteId), HttpStatus.OK);
     }
 
 
@@ -146,6 +143,15 @@ public class PropertyController {
         } else {
             return ResponseEntity.ok(propertyService.update(updateProperty, id));
         }
+    }
+
+    @PutMapping("/updateEnte/{propertyId}")
+    public ResponseEntity<Property> updateEnte(@PathVariable int propertyId, @RequestParam int enteId) throws Exception{
+        if (enteId==0 || propertyId ==0) {
+            ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(propertyService.updateEnte( enteId , propertyId));
     }
 
     @GetMapping("/filtered")

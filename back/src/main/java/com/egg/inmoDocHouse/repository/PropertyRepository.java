@@ -29,7 +29,7 @@ public interface PropertyRepository extends JpaRepository<Property,Integer> {
 
     Optional<List<Property>> findByTypeOperation(String typeOperation);
 
-    Optional<List<Property>> findByUserId(int userId);
+    Optional<List<Property>> findAllByEnteId(int enteId);
 
     Optional<List<Property>> findByUbication(String ubication);
 

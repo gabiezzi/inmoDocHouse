@@ -7,124 +7,831 @@
 	},
 	"item": [
 		{
-			"name": "Save Property",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NDUxOTAsImV4cCI6MTY2OTg4MTE5MH0.WmqWEtkDcTYAHfn0wIPwcxzDnRZDNCdHpylhoiobIeMLSCQ1i-4PeA5iIhU2yjzzd5nIqGvH8oKzs2VnQNfUZQ",
-							"type": "string"
+			"name": "Property",
+			"item": [
+				{
+					"name": "Save Property",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"cordoba\",\r\n    \"address\": \"Salta 1686\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"5"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"villa\",\r\n    \"address\": \"miseria 1686\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "add Ente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"cordoba\",\r\n    \"address\": \"Salta 1686\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/updateEnte/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"updateEnte",
+								"4"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/property/save",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"property",
-						"save"
-					]
+				{
+					"name": "GetOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/getOne/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"getOne",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"cordoba\",\r\n    \"address\": \"Salta 1686\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"getAll"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Login",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \r\n    \"password\":\"12345678\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Signin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"username\":\"Juanx\",\r\n    \"email\":\"Juanx@gmail.com\",\r\n    \"password\":\"Juanx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"login"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Signin",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
+			"name": "User",
+			"item": [
+				{
+					"name": "User Get User By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5Mjk0NDksImV4cCI6MTY3MDUzNDI0OX0.lCb72dRiWFaw-WXrrKoo0bP4KTGVqERBP-r3FTfXKXGyBGbWvPwn3mdM4JAUfX5gd26bv3dFoafsx9O6oAlaIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/byuser/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"byuser",
+								"1"
+							]
 						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/signin",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"signin"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Ente",
+			"item": [
+				{
+					"name": "Ente Get One",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5Mjk0NDksImV4cCI6MTY3MDUzNDI0OX0.lCb72dRiWFaw-WXrrKoo0bP4KTGVqERBP-r3FTfXKXGyBGbWvPwn3mdM4JAUfX5gd26bv3dFoafsx9O6oAlaIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/ente/getOne/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ente",
+								"getOne",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ente Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5Mjk0NDksImV4cCI6MTY3MDUzNDI0OX0.lCb72dRiWFaw-WXrrKoo0bP4KTGVqERBP-r3FTfXKXGyBGbWvPwn3mdM4JAUfX5gd26bv3dFoafsx9O6oAlaIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/ente/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ente",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ente Save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5Mjk0NDksImV4cCI6MTY3MDUzNDI0OX0.lCb72dRiWFaw-WXrrKoo0bP4KTGVqERBP-r3FTfXKXGyBGbWvPwn3mdM4JAUfX5gd26bv3dFoafsx9O6oAlaIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"username\":\"Ente\",\r\n    \"email\":\"Ente@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/ente/save/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ente",
+								"save",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Client Save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5Mjk0NDksImV4cCI6MTY3MDUzNDI0OX0.lCb72dRiWFaw-WXrrKoo0bP4KTGVqERBP-r3FTfXKXGyBGbWvPwn3mdM4JAUfX5gd26bv3dFoafsx9O6oAlaIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"username\":\"Ente\",\r\n    \"email\":\"Ente@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/client/save/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"save",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client get One",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/client/getOne/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"getOne",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/client/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Appointment save",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"dateAppointment\": \"2022-12-04T15:08:30.743+00:00\",\r\n    \r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment update client property",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2NzAxMTI1NTIsImV4cCI6MTY3MDcxNzM1Mn0.s2BjXH2w0fD1Rrk96mUxUdoi1_1OBUlicki7a4CvjU1otXpkUaFQJMXHeYRp8YPOAIpCtkeT8JHoX9njnIaVsg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/updateClientProperty/2?clientId=5&propertyId=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"updateClientProperty",
+								"2"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "5"
+								},
+								{
+									"key": "propertyId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5MjgxNjcsImV4cCI6MTY3MDUzMjk2N30.USQgJwXfubuUxMs6qpScWn50er0UQo9aO2JLk9KNNzjGDzsq1XUWf4d8AXBBHfKnUPvwJs1OTZVGKHQMhxjnzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/getAppointment/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"getAppointment",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5MjgxNjcsImV4cCI6MTY3MDUzMjk2N30.USQgJwXfubuUxMs6qpScWn50er0UQo9aO2JLk9KNNzjGDzsq1XUWf4d8AXBBHfKnUPvwJs1OTZVGKHQMhxjnzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/findAll/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"findAll",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment get by Client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5MjgxNjcsImV4cCI6MTY3MDUzMjk2N30.USQgJwXfubuUxMs6qpScWn50er0UQo9aO2JLk9KNNzjGDzsq1XUWf4d8AXBBHfKnUPvwJs1OTZVGKHQMhxjnzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/findAllByIdClient/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"findAllByIdClient",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment get by Property",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk5MjgxNjcsImV4cCI6MTY3MDUzMjk2N30.USQgJwXfubuUxMs6qpScWn50er0UQo9aO2JLk9KNNzjGDzsq1XUWf4d8AXBBHfKnUPvwJs1OTZVGKHQMhxjnzA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"usernameOrEmail\":\"admin\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/findAllByIdProperty/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"findAllByIdProperty",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
