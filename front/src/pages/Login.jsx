@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { NavLogin } from '../components/NavLogin'
 import '../styles/login.css'
-import { login } from '../helpers/UserAxios'
+import { useContext } from 'react'
+import { UserContext } from '../context/user/UserContext'
 
 export const Login = () => {
 
+  const { userLogin } = useContext(UserContext);
   const navigate = useNavigate();
 
   const { register, formState:{errors}, handleSubmit, reset } = useForm({defaultValues: {
@@ -15,7 +17,7 @@ export const Login = () => {
   }});
 
   const onSubmit = (user)=> {
-    login(user);
+    userLogin(user);
     reset();
     navigate('/propiedades')
   }

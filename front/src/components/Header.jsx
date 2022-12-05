@@ -9,7 +9,7 @@ import '../styles/header.css'
 
 export const Header = () => {
   return (
-    <div className=' Header d-flex col-12'>
+    <div className=' Header d-flex col-12 py-2'>
       <Logo />
       <Navbar />
       <NavbarMobile />

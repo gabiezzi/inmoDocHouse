@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ProductState>
-          <UserState>
+        <UserState>
+          <ProductState>
             <Routes>
               <Route path='/propiedades' element={ <ProductPage/> } />
               <Route path='/filtros' element={ <ProductsFiltered/> } />
@@ -30,8 +30,8 @@ function App() {
               <Route path='/registro' element={ <Registration/>} />
               <Route path='/recuperar' element={ <ForgotPassword/> } />
             </Routes>
-          </UserState>
-        </ProductState>
+          </ProductState>
+        </UserState>
       </BrowserRouter>
     </div>
   )
