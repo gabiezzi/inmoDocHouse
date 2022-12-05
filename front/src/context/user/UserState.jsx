@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { useReducer } from "react";
+import { login } from "../../helpers/UserAxios";
+import { TYPES } from "../types";
 import { UserContext } from "./UserContext";
 import { userReducer } from "./userReducer"
 
@@ -12,16 +15,29 @@ export const UserState = ({children}) => {
 
     const [state, dispatch] = useReducer(userReducer, initialState);
     
-    const saveTokenLocalStorage = (token) => {
-      
-    }
+    useEffect(() => {
+      console.log(state.token);
+    }, [state.token])
+    
+
+    
+   const userLogin = async(user)=> {
+    const token = await login(user);
+    dispatch({
+        type: TYPES.SAVE_TOKEN,
+        payload: token
+    })
+   }
+
+   
 
 
   return (
   <UserContext.Provider value={{
     token: state.token,
     username: state.username,
-    name: state.name
+    name: state.name,
+    userLogin,
   }}>
     {children}
   </UserContext.Provider>)

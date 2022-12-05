@@ -1,10 +1,14 @@
 import React, { useEffect, useReducer } from 'react'
+import { useContext } from 'react'
 import { deleteProperty, filteredProperty, getAll, getPropertyByAmbiences, getPropertyByUbication, findByTypeOperation, findByQuantityOfAmbiences, saveProperty } from '../../helpers/ProductAxios'
 import { TYPES } from '../types'
+import { UserContext } from '../user/UserContext'
 import { ProductContext } from './ProductContext'
 import { productReducer } from './productReducer'
 
 export const ProductState = ({children}) => {
+
+  const {token} = useContext(UserContext);
 
   const initialState = {
     products: [],
@@ -44,7 +48,7 @@ export const ProductState = ({children}) => {
 
   const propertySave = async(property) => {
 
-    const prop = await saveProperty(property);
+    const prop = await saveProperty(property, token);
     dispatch({
       type: TYPES.SAVE_PROPERTY,
       payload: prop

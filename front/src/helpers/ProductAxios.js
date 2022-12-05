@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthHeader } from "./AuthHeader";
+
 
 export const getAll = async()=>{
     const { data } = await axios.get('http://localhost:8080/api/property/getAll'); 
@@ -11,11 +11,15 @@ export const getPropertyByAmbiences = async(quantity) => {
     return data;
 }
 
-export const saveProperty = async(property) => {
-    const headers = { headers : AuthHeader() }
-    console.log(headers);
-    // const { data } = await axios.post('http://localhost:8080/api/property/save', property, headers);
-    return property;
+export const saveProperty = async(property, token) => {
+
+    const config = {
+        headers: { 
+            Authorization: token
+        }
+    }
+    const { data } = await axios.post('http://localhost:8080/api/property/save', property, config);
+    return data;
 } 
 
 export const deleteProperty = async(id) => {

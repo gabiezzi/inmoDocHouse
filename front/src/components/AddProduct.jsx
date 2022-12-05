@@ -23,7 +23,6 @@ export const AddProduct = () => {
         expense:null,
         privateNeighborhood: 1,
         typeOperation: 'Sale',
-        userId:null,
         ubication: ''
     }
     //HOOK PARA MANEJAR EL FORM
@@ -98,11 +97,6 @@ export const AddProduct = () => {
                         <label className='form-label'>Expensas</label>
                         <input type="number" className='form-control' {...register('expense', {required: true})}/>
                         {errors.expense?.type === 'required' && <p className='alert alert-danger'>El campo expensas es requerido</p> }
-                    </div>
-                    <div>
-                        <label className='form-label'>Id del usuario</label>
-                        <input type="number" className='form-control' {...register('userId', {required: true})}/>
-                        {errors.userId?.type === 'required' && <p className='alert alert-danger'>El campo Id del usuario es requerido</p> }
                     </div>
                     <div>
                         <label className='form-label'>Ubicacion</label>
