@@ -24,7 +24,6 @@ public class InmoDocHouseApplication {
                         .allowedOrigins("http://localhost:5173")
                         .allowedMethods("**")
                         .allowedHeaders("*")
-                        .allowedHeaders("*")
                 ;
             }
 

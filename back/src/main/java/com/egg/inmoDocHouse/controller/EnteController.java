@@ -5,6 +5,7 @@ import com.egg.inmoDocHouse.service.EnteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,16 +18,17 @@ public class EnteController {
     @Autowired
     EnteService enteService;
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
-        if(id == 0) {
+        if (id == 0) {
             return ResponseEntity.notFound().build();
         }
         enteService.delete(id);
         return ResponseEntity.ok("Complete");
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<EnteEntity> save(@RequestBody EnteEntity enteEntity) throws Exception {
         if (enteEntity.equals(null)) {
@@ -35,9 +37,10 @@ public class EnteController {
         return ResponseEntity.ok(enteService.save(enteEntity));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<EnteEntity> update(@RequestBody EnteEntity updateEnte) throws Exception {
-        if(updateEnte.equals(null)) {
+        if (updateEnte.equals(null)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.ok(enteService.update(updateEnte));
@@ -45,12 +48,13 @@ public class EnteController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<EnteEntity>> findAll() throws Exception {
         return ResponseEntity.ok(enteService.findAll());
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
 
     @GetMapping("/getOne/{enteId}")
     public ResponseEntity<EnteEntity>findByEnteId(@PathVariable("enteId") int enteId) throws Exception {
