@@ -16,7 +16,12 @@ export const UserState = ({children}) => {
     const [state, dispatch] = useReducer(userReducer, initialState);
     
     useEffect(() => {
-      console.log(state.token);
+      const userToken = JSON.parse(window.localStorage.getItem('user'));
+      dispatch({
+        type: TYPES.SAVE_TOKEN,
+        payload: userToken,
+      })
+      console.log(state.token);   
     }, [state.token])
     
 

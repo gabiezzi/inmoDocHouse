@@ -14,11 +14,17 @@ export const getPropertyByAmbiences = async(quantity) => {
 export const saveProperty = async(property, token) => {
 
     const config = {
+        url: 'http://localhost:8080/api/property/save',
+        method:'POST',
         headers: { 
-            Authorization: token
-        }
+            'Authorization': token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
+            'Content-Type': 'application/json',
+        },
+        data: JSON.stringify(property)
     }
-    const { data } = await axios.post('http://localhost:8080/api/property/save', property, config);
+    const { data } = await axios(config);
     return data;
 } 
 

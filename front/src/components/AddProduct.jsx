@@ -14,13 +14,13 @@ export const AddProduct = () => {
     //ESTADO INICIAL DEL FORMULARIO
     const initialForm = {
         id: '',
-        address:'' ,
-        m2:null ,
-        quantityOfAmbiences:null,
-        price:null,
-        quantityOfBathrooms:null,
+        address:undefined ,
+        m2:undefined ,
+        quantityOfAmbiences:undefined,
+        price:undefined,
+        quantityOfBathrooms:undefined,
         garage: 2,
-        expense:null,
+        expense:undefined,
         privateNeighborhood: 1,
         typeOperation: 'Sale',
         ubication: ''
@@ -53,7 +53,6 @@ export const AddProduct = () => {
         setValue('price', productSelected.price);
         setValue('quantityOfBathrooms', productSelected.quantityOfBathrooms);
         setValue('expense', productSelected.expense);
-        setValue('userId', productSelected.userId);
         setValue('ubication', productSelected.ubication);
       }
     }, [productSelected])
