@@ -1,0 +1,11 @@
+.burguer{
+    border: none !important;
+}
+.burguer:focus{
+    box-shadow: none!important;
+    
+}
+.drop-menu{
+    margin-right: 5%;
+    margin-left: 4%;
+}

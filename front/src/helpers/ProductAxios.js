@@ -14,22 +14,44 @@ export const getPropertyByAmbiences = async(quantity) => {
 export const saveProperty = async(property, token) => {
 
     const config = {
+        url: 'http://localhost:8080/api/property/save',
+        method:'POST',
         headers: { 
-            Authorization: token
-        }
+            'Authorization': token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
+            'Content-Type': 'application/json',
+        },
+        data: JSON.stringify(property)
     }
-    const { data } = await axios.post('http://localhost:8080/api/property/save', property, config);
+    const { data } = await axios(config);
     return data;
 } 
 
-export const deleteProperty = async(id) => {
-    const res = await axios.delete(`http://localhost:8080/api/property/delete/${id}`);
+export const deleteProperty = async(id, token) => {
+    const config = {
+        url:`http://localhost:8080/api/property/delete/${id}`,
+        method: 'DELETE',
+        headers: {
+        'Authorization': token,
+        }
+    }
+    const res = await axios(config);
 }
 
-export const changeProperty = async(property) => {
+export const changeProperty = async(property, token) => {
     const {id} = property;
     delete property.id;
-    const res = await axios.put(`http://localhost:8080/api/property/update/${id}`, property);
+    const config = {
+        url:`http://localhost:8080/api/property/update/${id}`,
+        method: 'PUT',
+        headers: {
+            'Authorization': token,
+           'Content-Type': 'application/json',
+        },
+        data: JSON.stringify(property)
+    }
+    const res = await axios(config);
     return res;
 }
 
@@ -51,5 +73,10 @@ export const findByQuantityOfAmbiences = async(quantity) => {
 
 export const findByTypeOperation = async(typeOperation) => {
     const { data } = await axios.get(`http://localhost:8080/api/property/typeoperation/${typeOperation}`);
+    return data;
+}
+
+export const findByMaxPrice = async(price)=> {
+    const {data} = await axios.get(`http://localhost:8080/api/property/pricemin/${price}`);
     return data;
 }

@@ -1,6 +1,4 @@
 import './App.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import { ProductPage } from './pages/ProductPage'
 import { ProductState } from './context/product/ProductState'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -12,8 +10,11 @@ import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
 import { ForgotPassword } from './pages/ForgotPassword'
 import { UserState } from './context/user/UserState'
+import { Profile } from './pages/Profile'
+import { PreRegistration } from './pages/PreRegistration'
 
 function App() {
+
 
   return (
     <div className="App">
@@ -29,6 +30,8 @@ function App() {
               <Route path='/login' element={ <Login/> } />
               <Route path='/registro' element={ <Registration/>} />
               <Route path='/recuperar' element={ <ForgotPassword/> } />
+              <Route path='/perfil' element={ <Profile/> } />
+              <Route path='/preregistro' element={ <PreRegistration/> } />
             </Routes>
           </ProductState>
         </UserState>
