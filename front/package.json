@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.3",
     "react-icons": "^4.6.0",
+    "react-query": "^3.39.2",
     "react-responsive-modal": "^6.2.0",
     "react-router-dom": "^6.4.3",
     "yarn": "^1.22.19"

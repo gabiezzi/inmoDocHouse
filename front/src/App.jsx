@@ -16,6 +16,7 @@ import { Logout } from './components/Logout'
 
 function App() {
 
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -30,7 +31,7 @@ function App() {
               <Route path='/login' element={ <Login/> } />
               <Route path='/registro' element={ <Registration/>} />
               <Route path='/recuperar' element={ <ForgotPassword/> } />
-              <Route path='/logout' element={<Logout/>}/>
+              <Route path='/logout' element={<Logout/>} />
             </Routes>
           </ProductState>
         </UserState>

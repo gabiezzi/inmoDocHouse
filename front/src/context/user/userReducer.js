@@ -3,7 +3,6 @@ import { TYPES } from "../types";
 export const userReducer = (state, action) => {
  
     const { type, payload } = action;
-    const { user } = state;
 
     switch(type) {
         case TYPES.SAVE_TOKEN:
@@ -15,7 +14,8 @@ export const userReducer = (state, action) => {
         case TYPES.LOGOUT:
             return{
                 ...state,
-                inSession: payload,
+                token: undefined,
+                inSession: false,
             }
 
     }

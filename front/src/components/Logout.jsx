@@ -1,14 +1,9 @@
-import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/user/UserContext';
 
 export const Logout = () => {
-    const { logout } = useContext(UserContext);
     const navigate = useNavigate();
 
     const userLogout = () => {
-        logout();
-        window.localStorage.removeItem('user');
         setTimeout(() => {
             navigate("/");
         }, 1500);
