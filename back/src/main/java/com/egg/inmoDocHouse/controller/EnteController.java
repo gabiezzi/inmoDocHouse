@@ -18,7 +18,7 @@ public class EnteController {
     @Autowired
     EnteService enteService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if (id == 0) {
@@ -28,7 +28,7 @@ public class EnteController {
         return ResponseEntity.ok("Complete");
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PostMapping("/save")
     public ResponseEntity<EnteEntity> save(@RequestBody EnteEntity enteEntity) throws Exception {
         if (enteEntity.equals(null)) {
@@ -37,7 +37,7 @@ public class EnteController {
         return ResponseEntity.ok(enteService.save(enteEntity));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PutMapping("/update/{id}")
     public ResponseEntity<EnteEntity> update(@RequestBody EnteEntity updateEnte) throws Exception {
         if (updateEnte.equals(null)) {
@@ -48,13 +48,12 @@ public class EnteController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/getAll")
     public ResponseEntity<List<EnteEntity>> findAll() throws Exception {
         return ResponseEntity.ok(enteService.findAll());
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
 
     @GetMapping("/getOne/{enteId}")
     public ResponseEntity<EnteEntity>findByEnteId(@PathVariable("enteId") int enteId) throws Exception {

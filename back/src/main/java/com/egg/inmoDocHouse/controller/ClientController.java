@@ -19,7 +19,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if(id == 0) {
@@ -30,7 +30,7 @@ public class ClientController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PostMapping("/save")
     public ResponseEntity<ClientEntity> save(@RequestBody ClientEntity clientEntity) throws Exception {
         if (clientEntity.equals(null)) {
@@ -39,7 +39,7 @@ public class ClientController {
         return ResponseEntity.ok(clientService.save(clientEntity));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PutMapping("/update/{id}")
     public ResponseEntity<ClientEntity> update(@RequestBody ClientEntity clientEntity) throws Exception {
         if(clientEntity.equals(null)) {
@@ -49,13 +49,13 @@ public class ClientController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/getAll")
     public ResponseEntity<List<ClientEntity>> findAll() throws Exception {
         return ResponseEntity.ok(clientService.findAll());
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/getOne/{clientId}")
     public ResponseEntity<ClientEntity>findByUserId(@PathVariable("clientId") int clientId) throws Exception {
 

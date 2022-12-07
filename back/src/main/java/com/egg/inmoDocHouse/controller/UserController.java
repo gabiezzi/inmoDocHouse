@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if(id == 0) {
@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok("Complete");
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PostMapping("/save")
     public ResponseEntity<UserEntity> save(@RequestBody UserEntity userEntity) throws Exception {
         if (userEntity.equals(null)) {
@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok(userService.save(userEntity));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @PutMapping("/update")
     public ResponseEntity<UserEntity> update(@RequestBody UserEntity userEntity) throws Exception {
         if(userEntity.equals(null)) {
@@ -48,13 +48,13 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/getAll")
     public ResponseEntity<List<UserEntity>> findAll() throws Exception {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
     @GetMapping("/byuser/{userId}")
     public ResponseEntity<UserEntity> findByUserId(@PathVariable("userId") int userId) throws Exception {
 
