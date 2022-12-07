@@ -28,7 +28,6 @@ export const UserState = ({children}) => {
           payload: userToken,
         });
       }
-      console.log(state.inSession)
     }, [state.token])
     
     

@@ -1,15 +1,18 @@
 import React from 'react'
 import { useContext } from 'react'
 import { GiHouse } from 'react-icons/gi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user/UserContext'
 import './Navbar.css'
 
 export const Navbar = () => {
-
-  const { inSession, logout, login } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { inSession, logout, login, username } = useContext(UserContext);
   const textButton = inSession ? 'Cerrar Sesión':'Iniciar Sesión';
   const accion = inSession ? logout : login;
+  const perfil = () => {
+    navigate('/perfil');
+  }
 
   return (
     <>
@@ -26,23 +29,49 @@ export const Navbar = () => {
 
         <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav text-center d-flex flex-column flex-lg-row w-100 justify-content-end">
-                <li className="nav-item mx-3 my-2">
+
+                <li className="nav-item mx-5 my-2">
                   <Link to='/alquila' className='text-decoration-none text-dark'>Alquila</Link>
                 </li>
+              {
+                inSession
+                  &&  <li className="nav-item mx-5 my-2">
+                        <Link to='/propiedad/registro' className='text-decoration-none text-dark'>Vende</Link>
+                      </li>
+              }    
 
-                <li className="nav-item mx-3 my-2">
-                  <Link to='/propiedad/registro' className='text-decoration-none text-dark'>Vende</Link>
-                </li>
+                
 
-                <li className="nav-item mx-3 my-2">
+                <li className="nav-item mx-5 my-2">
                   <Link to='/propiedades' className='text-decoration-none text-dark'>Explora</Link>
                 </li>
 
+                {
+                  inSession && (
+                    <div className="dropdown drop-menu">
+                      <button className="btn btn-outline-primary dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {username}
+                      </button>
+                        <ul className="dropdown-menu dropdown-menu-dark">
+                          <button className='btn dropdown-item' onClick={perfil}>Perfil</button>
+                          <button className='btn dropdown-item' onClick={logout}>Cerrar Sesión</button>
+                        </ul>
+                    </div>
+                    )
+                  }
+
+              {
+                !inSession && (
                 <li className="nav-item">
                     <button className='btn fw-bold' onClick={accion}>
                       {textButton}
                     </button>
                 </li>
+                )
+              }
+                
+                
+
             </ul>
         </div>
     </div>
@@ -50,3 +79,4 @@ export const Navbar = () => {
     </>
   )
 }
+

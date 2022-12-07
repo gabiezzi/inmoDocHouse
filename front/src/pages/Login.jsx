@@ -20,10 +20,13 @@ export const Login = () => {
 
   const onSubmit = (user)=> {
     try {
+      
       userLogin(user);
       reset();
       navigate('/propiedades')
+
     } catch (error) {
+
       reset();
       setInvalidPass(true);
       setTimeout(() => {
