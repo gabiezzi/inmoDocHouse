@@ -9,7 +9,14 @@ export const userReducer = (state, action) => {
         case TYPES.SAVE_TOKEN:
             return{
                 ...state,
-                token:`Bearer ${payload.accessToken}`
+                token:`Bearer ${payload.accessToken}`,
+                inSession:true,
             }
+        case TYPES.LOGOUT:
+            return{
+                ...state,
+                inSession: payload,
+            }
+
     }
 }

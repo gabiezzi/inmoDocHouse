@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { deleteProperty, filteredProperty, getAll, getPropertyByAmbiences, getPropertyByUbication, findByTypeOperation, findByQuantityOfAmbiences, saveProperty } from '../../helpers/ProductAxios'
+import { deleteProperty, filteredProperty, getAll, getPropertyByAmbiences, getPropertyByUbication, findByTypeOperation, findByQuantityOfAmbiences, saveProperty, findByMaxPrice } from '../../helpers/ProductAxios'
 import { TYPES } from '../types'
 import { UserContext } from '../user/UserContext'
 import { ProductContext } from './ProductContext'
@@ -23,7 +23,15 @@ export const ProductState = ({children}) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [state.productSelected]);
+
+  const findByPrice = async(price) => {
+    const products = await findByMaxPrice(price);
+    dispatch({
+      type: TYPES.FIND_BY_PRICE,
+      payload:products
+    })
+  }
 
   const resetFiltered = ()=> {
     dispatch({
@@ -59,7 +67,7 @@ export const ProductState = ({children}) => {
   }
 
   const deleteById = async(id) => {
-     const res = deleteProperty(id);
+     const res = deleteProperty(id, token);
      dispatch({
       type: TYPES.DELETE_PRODUCT,
       payload: id
@@ -119,7 +127,8 @@ export const ProductState = ({children}) => {
       findByUbication,
       homeFilter,
       findByQuantityOfAmb,
-      findByTypeOp
+      findByTypeOp,
+      findByPrice
     }}>
         {children}
     </ProductContext.Provider>

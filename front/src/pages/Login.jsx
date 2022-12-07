@@ -8,6 +8,8 @@ import { UserContext } from '../context/user/UserContext'
 
 export const Login = () => {
 
+  const [invalidPass, setInvalidPass] = useState(false);
+
   const { userLogin } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -17,11 +19,21 @@ export const Login = () => {
   }});
 
   const onSubmit = (user)=> {
-    userLogin(user);
-    reset();
-    navigate('/propiedades')
+    try {
+      userLogin(user);
+      reset();
+      navigate('/propiedades')
+    } catch (error) {
+      reset();
+      setInvalidPass(true);
+      setTimeout(() => {
+        setInvalidPass(true);
+        }, 3000);
+    }
   }
 
+
+  
   
 
   return (
@@ -40,7 +52,8 @@ export const Login = () => {
             <div className="my-4">
               <label className="form-label">Contraseña</label>
               <input type="password" placeholder='Ingrese su contraseña' className="form-control" {...register('password', { required: true })}/>
-              {errors.password?.type === 'required' && <p className='alert alert-danger'>Debe ingresar la contraseña</p> }
+              { errors.password?.type === 'required' && <p className='alert alert-danger'>Debe ingresar la contraseña</p> }
+              { invalidPass && <p className='alert alert-danger>'>Usuario o contraseña incorrectos</p> }
             </div>
             <div>
               <button className="btn btn-primary form-control">

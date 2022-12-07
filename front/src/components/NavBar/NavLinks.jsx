@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../context/user/UserContext.js';
 import { NavButton } from './NavButton.jsx'
 
 export const NavLinks = () => {
+
+  const { inSession } = useContext(UserContext);
   return (
     <ul className="NavLinks">
       <NavButton name="Alquila" to="alquila" />
       <NavButton name="Vende" to="propiedad/registro" />
       <NavButton name="Explora" to="propiedades" />
-      <NavButton name="Iniciar Sesión" to="login" />
+      
+      <NavButton name={!inSession ? 'Iniciar Sesión' : 'Cerrar Sesión'} to={inSession === false ? 'login' : 'logout'} />
     </ul>
   );
 };

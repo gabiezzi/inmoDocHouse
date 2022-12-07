@@ -12,6 +12,7 @@ import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
 import { ForgotPassword } from './pages/ForgotPassword'
 import { UserState } from './context/user/UserState'
+import { Logout } from './components/Logout'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route path='/login' element={ <Login/> } />
               <Route path='/registro' element={ <Registration/>} />
               <Route path='/recuperar' element={ <ForgotPassword/> } />
+              <Route path='/logout' element={<Logout/>}/>
             </Routes>
           </ProductState>
         </UserState>

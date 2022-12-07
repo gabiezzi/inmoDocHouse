@@ -56,6 +56,11 @@ export const productReducer = (state, action) => {
             ...state,
             productsFiltered: payload,
         }
+    case TYPES.FIND_BY_PRICE:
+      return{
+        ...state,
+        productsFiltered: payload,
+      }
     default:
       return state;
   }

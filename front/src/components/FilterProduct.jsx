@@ -5,20 +5,30 @@ import '../styles/filterProduct.css'
 import { ProductContext } from '../context/product/ProductContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 
 export const FilterProduct = () => {
 
   const navigate = useNavigate();
-
+  
   const [precio, setPrecio] = useState(20000);
+  const {getPropertyByAmb, findByUbication, findByPrice} = useContext(ProductContext);
+
+  useEffect(() => {
+    if(precio > 20000){
+      findByPrice(precio);
+      navigate('/filtros')
+    }
+  }, [precio])
+  
   const handleChange = ({target})=> {
     const {value} = target;
     setPrecio(value);
   }
   const {register, reset, handleSubmit} = useForm({defaultValues:{location: ''}})
  
-  const {getPropertyByAmb, findByUbication} = useContext(ProductContext);
+  
   const onSubmitLocation = ({location}) => {
     findByUbication(location);
     reset();

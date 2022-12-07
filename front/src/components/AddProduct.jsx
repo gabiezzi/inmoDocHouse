@@ -2,15 +2,18 @@ import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../context/product/ProductContext';
+import { UserContext } from '../context/user/UserContext';
 import { changeProperty } from '../helpers/ProductAxios';
 import '../styles/addProduct.css'
 
 export const AddProduct = () => {
 
     const navigate = useNavigate();
+    const {token} = useContext(UserContext);
 
 
     const { propertySave, productSelected, resetFiltered } = useContext(ProductContext);
+    
     //ESTADO INICIAL DEL FORMULARIO
     const initialForm = {
         id: '',
@@ -22,8 +25,8 @@ export const AddProduct = () => {
         garage: 2,
         expense:undefined,
         privateNeighborhood: 1,
-        typeOperation: 'Sale',
-        ubication: ''
+        typeOperation: undefined,
+        ubication: undefined
     }
     //HOOK PARA MANEJAR EL FORM
     const {register, formState:{errors}, handleSubmit, reset, setValue } = useForm({defaultValues: initialForm});
@@ -31,13 +34,13 @@ export const AddProduct = () => {
     //FUNCION PARA MANEJAR EL SUBMIT
     const onSubmit = (property) => {
         if(productSelected){
-            changeProperty(property);
+            changeProperty(property, token);
             reset();
             resetFiltered();
             navigate('/propiedades')
 
         }else{
-            propertySave(property);
+            propertySave(property, token);
             reset();
             navigate('/propiedades')
         }
@@ -101,6 +104,13 @@ export const AddProduct = () => {
                         <label className='form-label'>Ubicacion</label>
                         <input type="text" className='form-control' {...register('ubication', {required: true})}/>
                         {errors.ubication?.type === 'required' && <p className='alert alert-danger'>El campo ubicacion es requerido</p> }
+                    </div>
+                    <div>
+                        <label className='form-label'>Tipo de operacion</label>
+                        <select className='form-select text-center my-2' {...register('typeOperation',{required: true})}>
+                            <option value="Rental">Alquiler</option>
+                            <option value="Sale">Venta</option>
+                        </select>
                     </div>
                     <button type='submit' className='btn btn-success mt-2'>Registrar</button>
                     <button type='submit' className='btn btn-warning mt-2 mx-2'>
