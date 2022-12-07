@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { FilterProduct } from "../components/FilterProduct"
-import { Header } from "../components/Header"
 import { Navbar } from "../components/NavBarLeo/Navbar"
 import { Product } from "../components/Product"
 import { ProductContext } from "../context/product/ProductContext"

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Header } from "../components/Header"
 import { Navbar } from "../components/NavBarLeo/Navbar";
 import { SearchBar } from "../components/SearchBar"
 import '../styles/home.css'

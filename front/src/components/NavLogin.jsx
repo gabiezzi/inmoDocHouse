@@ -1,5 +1,5 @@
 import React from 'react'
-import { Logo } from './Logo'
+import { Logo } from './NavBarLeo/Logo'
 
 export const NavLogin = () => {
   return (
