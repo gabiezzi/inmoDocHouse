@@ -21,9 +21,11 @@ public class InmoDocHouseApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
-                        .allowedMethods("**")
-                        .allowedHeaders("*")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
+                        .allowedHeaders("*","Authorization")
+                        .maxAge(600)
+
                 ;
             }
 

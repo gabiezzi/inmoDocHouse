@@ -13,6 +13,7 @@ import com.egg.inmoDocHouse.repository.RolRepository;
 import com.egg.inmoDocHouse.repository.UserRepository;
 import com.egg.inmoDocHouse.security.JWTAuthResponse;
 import com.egg.inmoDocHouse.security.JwtTokenProvider;
+import com.egg.inmoDocHouse.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,9 @@ public class AuthController {
 	
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
+
+	@Autowired
+	private EmailService emailService;
 	
 	@PostMapping("/login")
 	public ResponseEntity<JWTAuthResponse> login(@RequestBody Login login){
@@ -82,6 +86,10 @@ public class AuthController {
 
 		Rol roles = rolRepository.findByRolType("ROLE_CLIENT").get();
 		clientEntity.setRol(Collections.singleton(roles));
+
+		if(clientEntity!=null)
+			emailService.sendWelcomeEmailTo(clientEntity.getEmail());
+
 
 		clientRepository.save(clientEntity);
 		return new ResponseEntity<>("Cliente registrado exitosamente",HttpStatus.OK);
