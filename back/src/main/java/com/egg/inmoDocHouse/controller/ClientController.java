@@ -6,6 +6,7 @@ import com.egg.inmoDocHouse.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         if(id == 0) {
@@ -27,6 +29,8 @@ public class ClientController {
         return ResponseEntity.ok("Complete");
     }
 
+
+
     @PostMapping("/save")
     public ResponseEntity<ClientEntity> save(@RequestBody ClientEntity clientEntity) throws Exception {
         if (clientEntity.equals(null)) {
@@ -34,6 +38,7 @@ public class ClientController {
         }
         return ResponseEntity.ok(clientService.save(clientEntity));
     }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<ClientEntity> update(@RequestBody ClientEntity clientEntity) throws Exception {
@@ -44,10 +49,12 @@ public class ClientController {
         }
     }
 
+
     @GetMapping("/getAll")
     public ResponseEntity<List<ClientEntity>> findAll() throws Exception {
         return ResponseEntity.ok(clientService.findAll());
     }
+
 
     @GetMapping("/getOne/{clientId}")
     public ResponseEntity<ClientEntity>findByUserId(@PathVariable("clientId") int clientId) throws Exception {
