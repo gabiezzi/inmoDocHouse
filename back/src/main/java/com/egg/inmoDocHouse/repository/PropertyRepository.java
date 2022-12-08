@@ -3,6 +3,8 @@ package com.egg.inmoDocHouse.repository;
 
 import com.egg.inmoDocHouse.entity.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,8 +37,11 @@ public interface PropertyRepository extends JpaRepository<Property,Integer> {
 
     Optional<Property> findByAddress(String address);
 
-    Optional<List<Property>> findByUbicationAndTypeOperationAndQuantityOfAmbiences(String ubication
-            ,String typeOperation,int quantity);
+    @Query("SELECT a FROM Property a WHERE (:ubication is null or a.ubication= :ubication) and" +
+            "(:typeOperation is null or a.typeOperation= :typeOperation) and" +
+            "(:quantity is null or :quantity = 0 or a.quantityOfAmbiences= :quantity)")
+    Optional<List<Property>> findByUbicationAndTypeOperationAndQuantityOfAmbiences(@Param("ubication") String ubication
+            , @Param("typeOperation") String typeOperation,@Param("quantity") int quantity);
 
     Optional<List<Property>> findByUbicationAndTypeOperation(String ubication,String typeOperation);
 }
