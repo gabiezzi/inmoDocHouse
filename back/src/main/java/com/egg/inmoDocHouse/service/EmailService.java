@@ -37,10 +37,11 @@ public class EmailService{
         Email toEmail = new Email(to);
         Content content = new Content(
                 "text/plain",
-                "Thank you for your registration. You have successfully registered for our event:'DisneyApi'!"
+                "Tu registro se ha realizado con exito!!" +
+                        " Bienvenido a DrHouse Inmobiliaria, aquí podrá gestionar sus inmuebles, vender o alquilar"
         );
 
-        String subject = "Bienvenido a Alkemy Api Disney!";
+        String subject = "Bienvenido a DrHouse Inmobiliaria!";
 
         Mail mail = new Mail(fromEmail, subject, toEmail, content);
         SendGrid sg = new SendGrid(apiKey);
