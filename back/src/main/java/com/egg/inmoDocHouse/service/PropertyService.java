@@ -248,16 +248,6 @@ public class PropertyService {
     }
 
     public List<Property> searchWithFilters(String ubication, String typeOperation, int quantity) {
-        if (ubication.isEmpty() && typeOperation.isEmpty() && quantity == 0) {
-            throw new IllegalArgumentException();
-        } else if (quantity == 0) {
-            return propertyRepository.findByUbicationAndTypeOperation(ubication, typeOperation).get();
-        } else if (typeOperation.isEmpty() && quantity == 0) {
-            return propertyRepository.findByUbication(ubication).get();
-        } else if (typeOperation.isEmpty() && typeOperation.isEmpty()) {
-            return propertyRepository.findByQuantityOfAmbiences(quantity).get();
-        }
-
 
         return propertyRepository.findByUbicationAndTypeOperationAndQuantityOfAmbiences(ubication,
                 typeOperation, quantity).get();
