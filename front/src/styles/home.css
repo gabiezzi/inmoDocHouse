@@ -1,5 +1,5 @@
 .contenedor-home{
-    background-image: linear-gradient(rgba(17, 17, 17, 0.637), rgba(29, 29, 27, 0.103)), url('../images/fondo-home.png');
+    background-image: linear-gradient(rgba(228, 240, 240, 0.137), rgba(29, 25, 25, 0.301)), url('../images/posible-bg-home.jpg');
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -10,11 +10,20 @@
     height: 100vh;
 }
 
+/* .h2dad{
+    box-shadow: .1rem 1rem 2rem  rgba(2, 2, 2, 0.267);
+    background-color: rgba(65, 167, 167, 0.144);
+} */
+
 .texto{
-    text-shadow:2px 3px 0px rgba(7, 7, 7, 0.945) ;
+    text-shadow:2px 2px 0px rgba(7, 7, 7, 0.945) ;
 }
 @media (max-width: 987px) {
     .contenedor-home{
         min-height: 90%;
+    }
+    .h2dad{
+        box-shadow: .1rem 1rem 2rem  rgba(2, 2, 2, 0.267);
+        background-color: rgba(19, 90, 112, 0.507);
     }
 }

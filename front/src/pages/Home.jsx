@@ -9,7 +9,7 @@ export const Home = () => {
     <div className="home-container">
     <Navbar/>
       <div className="d-flex flex-column contenedor-home">
-        <div className="d-flex algin-items-center flex-column m-auto">
+        <div className="d-flex algin-items-center flex-column m-auto py-3  px-3 h2dad rounded">
           <h2 className="h1 texto fw-bold text-white text-center">
             Gestiona tu alquiler de forma óptima
           </h2>

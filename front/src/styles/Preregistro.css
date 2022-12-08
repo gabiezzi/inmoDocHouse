@@ -1,0 +1,7 @@
+.contenedor-preregistro{
+    height: 91vh;
+    background-image: url('../images/cool-background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
