@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -154,6 +155,18 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
+    public List<Appointment> findAppointmentByDateAppointment(int propertyId) throws Exception {
+        List<Appointment> listAppointmentProperty = appointmentRepository.findAppointmentByDateAppointment(propertyId);
+
+        if (listAppointmentProperty.isEmpty()) {
+            throw new Exception("There's not appointment yet.");
+        }
+
+        return listAppointmentProperty;
+    }
+    
+    
+    
     public boolean dayValidator(LocalDateTime dateTime) throws Exception {
 
         LocalTime timeOpen = LocalTime.of(8, 0);
@@ -167,4 +180,5 @@ public class AppointmentService {
 
 
     }
+    
 }

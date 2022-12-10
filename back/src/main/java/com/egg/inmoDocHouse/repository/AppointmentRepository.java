@@ -11,10 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
-    Optional<Appointment> findByDateAppointment(Date dateAppointment);
-
     List<Appointment> findAllByClientId(int ClientId);
-
     List<Appointment> findAll();
     List<Appointment> findAllByPropertyId(int propertyId);
+    List<Appointment> findAppointmentByDateAppointment(int propertyId);
 }
