@@ -37,7 +37,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/property/5",
+							"raw": "http://localhost:8080/api/property/save",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -46,7 +46,50 @@
 							"path": [
 								"api",
 								"property",
-								"5"
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"cordoba\",\r\n    \"address\": \"Salta 1686\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"save"
 							]
 						}
 					},
@@ -139,6 +182,49 @@
 				},
 				{
 					"name": "Get ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2Njk4NTc1ODYsImV4cCI6MTY3MDQ2MjM4Nn0.G8KxVjwYO1xKiuoqePQYVo3dKVqAzmVFgm9Jb8TEZUVZYLSZlZKvvkywxH31bT8AX_4ILn3z9eBKT7XzU7gD-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"m2\": 10.5,\r\n    \"quantityOfAmbiences\": 2,\r\n    \"price\": 10000,\r\n    \"quantityOfBathrooms\": 1,\r\n    \"garage\": false,\r\n    \"expense\": 1000,\r\n    \"privateNeighborhood\": false,\r\n    \"typeOperation\": \"Sale\",\r\n    \"userId\": 1,\r\n    \"ubication\": \"cordoba\",\r\n    \"address\": \"Salta 1686\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/property/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"property",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filtered",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -650,6 +736,47 @@
 									"key": "propertyId",
 									"value": "5"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Date Appointment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2NzAxMTI1NTIsImV4cCI6MTY3MDcxNzM1Mn0.s2BjXH2w0fD1Rrk96mUxUdoi1_1OBUlicki7a4CvjU1otXpkUaFQJMXHeYRp8YPOAIpCtkeT8JHoX9njnIaVsg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/appointment/addDateAppointment/{appointmentId}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appointment",
+								"addDateAppointment",
+								"{appointmentId}"
 							]
 						}
 					},
