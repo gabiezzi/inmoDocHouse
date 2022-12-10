@@ -36,8 +36,8 @@ export const Registration = () => {
     <>
       <NavLogin />
       <div className="d-flex flex-column flex-lg-row flex-sm-row align-items-center justify-content-around registro-contenedor">
-        <div className="col-12 col-sm-6 col-lg-6">
-          <h2 className="text-center">Registrate</h2>
+        <div className="col-12 col-sm-6 col-lg-6 registrate shadow">
+          <h2 className="text-center text-light fw-bold">Registrate</h2>
         </div>
         <div className="col-12 col-sm-6 col-lg-6 d-flex justify-content-center align-items-center">
           <form className="w-75" onSubmit={handleSubmit(onSubmit)}>

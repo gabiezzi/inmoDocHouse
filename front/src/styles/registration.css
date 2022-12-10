@@ -1,3 +1,22 @@
 .registro-contenedor{
-min-height: 90vh;
+min-height: 91.1vh;
+
+}
+
+.registrate{
+    min-height: 91.1vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/cool-background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+
+@media (max-width:575px) {
+    .registrate{
+        display: none;
+    }
 }

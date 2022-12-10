@@ -7,6 +7,7 @@ export const signin = async(user) => {
 }
 
 export const login = async(user) => {
+    try {
         const { usernameOrEmail } = user
         const {data} = await axios.post('http://localhost:8080/api/auth/login', user);
         const userRegistred = {
@@ -15,6 +16,9 @@ export const login = async(user) => {
         }
         window.localStorage.setItem('user', JSON.stringify(userRegistred));
         return userRegistred;
+    } catch (error) {
+        throw new Error(error);
+    }
 
 }
 

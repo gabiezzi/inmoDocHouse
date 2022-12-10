@@ -31,7 +31,7 @@ export const Navbar = () => {
             <ul className="navbar-nav text-center d-flex flex-column flex-lg-row w-100 justify-content-end">
 
                 <li className="nav-item mx-5 my-2">
-                  <Link to='/alquila' className='text-decoration-none text-dark'>Alquila</Link>
+                  <Link to='/preregistro' className='text-decoration-none text-dark'>Comienza</Link>
                 </li>
               {
                 inSession

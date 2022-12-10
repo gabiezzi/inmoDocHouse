@@ -8,7 +8,7 @@ export const userReducer = (state, action) => {
         case TYPES.SAVE_TOKEN:
             return{
                 ...state,
-                token:`Bearer ${payload.accessToken}`,
+                token:`Bearer ${payload.token}`,
                 inSession:true,
                 username: payload.usernameOrEmail,
             }
