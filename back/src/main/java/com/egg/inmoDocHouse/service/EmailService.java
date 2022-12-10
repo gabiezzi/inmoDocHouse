@@ -26,7 +26,8 @@ public class EmailService{
     private boolean enable;
 
 
-    public void sendWelcomeEmailTo(String to) {
+
+    public void sendWelcomeEmailTo(String username,String to) {
         if (!enable) {
             return;
         }
@@ -37,7 +38,7 @@ public class EmailService{
         Email toEmail = new Email(to);
         Content content = new Content(
                 "text/plain",
-                "Tu registro se ha realizado con exito!!" +
+                username + ", tu registro se ha realizado con exito!!" +
                         " Bienvenido a DrHouse Inmobiliaria, aquí podrá gestionar sus inmuebles, vender o alquilar"
         );
 

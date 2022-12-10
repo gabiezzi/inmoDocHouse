@@ -16,8 +16,11 @@ public class EnteService {
 
     @Autowired
     EnteRepository enteRepository;
+
     @Autowired
     private PropertyRepository propertyRepository;
+    @Autowired
+    private EmailService emailService;
 
 
     @Transactional
@@ -29,6 +32,8 @@ public class EnteService {
         } else {
             throw new Exception("El ente ya se encuenta creado");
         }
+
+        emailService.sendWelcomeEmailTo(enteEntity.getUsername(), enteEntity.getEmail());
 
         return enteEntity;
     }

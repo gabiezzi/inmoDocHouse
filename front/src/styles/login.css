@@ -1,4 +1,8 @@
 .form-login{
-    height: 89vh;
+    height: 91.1vh;
     width: 100vw;
+    background-image: url('../images/login-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

@@ -26,7 +26,7 @@ export const Login = () => {
       navigate('/propiedades')
 
     } catch (error) {
-
+      console.log('hago lo que quiero')
       reset();
       setInvalidPass(true);
       setTimeout(() => {
@@ -35,15 +35,11 @@ export const Login = () => {
     }
   }
 
-
-  
-  
-
   return (
     <>
       <NavLogin />
       <div className=" form-login d-flex align-items-center justify-content-center">
-        <div className="col-10 col-sm-6 col-lg-4 py-5 px-5 shadow border border-ligth rounded ">
+        <div className="col-10 col-sm-6 col-lg-4 py-5 px-5 shadow border border-ligth rounded bg-white">
           <h2 className="text-center fw-bold">Iniciar Sesión</h2>
           <hr />
           <form onSubmit={handleSubmit(onSubmit)}>

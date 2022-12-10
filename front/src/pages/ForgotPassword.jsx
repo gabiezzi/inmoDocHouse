@@ -17,9 +17,10 @@ export const ForgotPassword = () => {
         navigate('/login')
     }
   return (
+    <>
+    <NavLogin/>
     <div className='recuperar-password-contenedor d-flex flex-column justify-content-between align-items-center '>
-        <NavLogin/>
-        <div className='d-flex flex-column shadow col-10 col-sm-6 col-lg-4 px-2 m-auto' >
+        <div className='d-flex flex-column shadow col-10 col-sm-6 col-lg-4 px-4 m-auto bg-white rounded' >
             <h2 className='fw-bold text-center mt-5'>¿Olvidaste tu contraseña?</h2>
             <div>
                 <p className='text-muted text-center'>Lo entendemos, ¡simplemente ingrese su dirección de correo electrónico a continuacion y le enviaremos un enlace para restablecer su contraseña!</p>
@@ -31,5 +32,6 @@ export const ForgotPassword = () => {
             </form>
         </div>
     </div>
+    </>
   )
 }
