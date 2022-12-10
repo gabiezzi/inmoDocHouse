@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-  
+
     @Transactional
     public UserEntity save(UserEntity userEntity) throws Exception {
         Optional<UserEntity> user = userRepository.findById(userEntity.getId());

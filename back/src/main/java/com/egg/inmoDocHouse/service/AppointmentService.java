@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -36,11 +40,11 @@ public class AppointmentService {
         if (appointmentOptional.isPresent())
             throw new Exception("There is already an appointment created with that id");
 
+
         //if (appointmentRepository.findAppointmentByIdClientAndIdEnte(appointment.getIdClient(),appointment.getIdEnte()).isPresent())
-          //  throw new Exception("There is already an appointment created with that Client and Manager");
+        //  throw new Exception("There is already an appointment created with that Client and Manager");
 
-
-        appointment.setDateCreation(new Date());
+        appointment.setDateCreation(LocalDateTime.now());
 
         return appointmentRepository.save(appointment);
     }
@@ -55,13 +59,13 @@ public class AppointmentService {
     }
 
     @Transactional
-    public void delete(int idAppointment) throws Exception  {
+    public void delete(int idAppointment) throws Exception {
 
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(idAppointment);
 
         if (!appointmentOptional.isPresent())
             throw new Exception("There isn't exist an appointment created with that id");
-        appointmentRepository.deleteById(idAppointment)   ;
+        appointmentRepository.deleteById(idAppointment);
     }
 
     public Optional<Appointment> getAppointment(int id) throws Exception {
@@ -73,31 +77,20 @@ public class AppointmentService {
         return appointmentOptional;
     }
 
-    /* public Optional<Appointment> getAppointmentByDateAppointment(Date dateAppointment) throws Exception {
-         Optional<Appointment> appointmentOptional = appointmentRepository.findByDateAppointment(dateAppointment);
-
-
-        if (!appointmentOptional.isPresent())
-            throw new Exception("There isn't exist an appointment created with that date");
-
-         return appointmentOptional;
-    } */
-
-
-    public List<Appointment> findAll() throws Exception{
+    public List<Appointment> findAll() throws Exception {
         List<Appointment> listAppointment = appointmentRepository.findAll();
 
-        if (listAppointment.isEmpty()){
+        if (listAppointment.isEmpty()) {
             throw new Exception("There's not appointment yet.");
         }
 
         return listAppointment;
     }
 
-    public List<Appointment> findAllByClientId(int clientId) throws Exception{
+    public List<Appointment> findAllByClientId(int clientId) throws Exception {
         List<Appointment> listAppointmentClient = appointmentRepository.findAllByClientId(clientId);
 
-        if (listAppointmentClient.isEmpty()){
+        if (listAppointmentClient.isEmpty()) {
             throw new Exception("There's no list for this client.");
         }
 
@@ -105,10 +98,10 @@ public class AppointmentService {
     }
 
 
-    public List<Appointment> findAllByPropertyId(int propertyId) throws Exception{
+    public List<Appointment> findAllByPropertyId(int propertyId) throws Exception {
         List<Appointment> listAppointmentProperty = appointmentRepository.findAllByPropertyId(propertyId);
 
-        if (listAppointmentProperty.isEmpty()){
+        if (listAppointmentProperty.isEmpty()) {
             throw new Exception("There's not appointment yet.");
         }
 
@@ -139,5 +132,39 @@ public class AppointmentService {
         appointmentOptional.get().setProperty(optionalProperty.get());
 
         return appointmentRepository.save(appointmentOptional.get());
+    }
+
+    public Appointment addDateAppointment(String dateAppointment, int appointmentId) throws Exception {
+
+
+        LocalDateTime dateAppointmentFormatted = LocalDateTime.parse(dateAppointment, DateTimeFormatter.ISO_DATE_TIME);
+
+        System.out.println(dayValidator(dateAppointmentFormatted));
+
+        if (dayValidator(dateAppointmentFormatted))
+
+
+        if (!appointmentRepository.findById(appointmentId).isPresent())
+            throw new Exception("There isn't exist an appointment created with that id");
+
+        Appointment appointment = appointmentRepository.findById(appointmentId).get();
+
+        appointment.setDateAppointment(dateAppointmentFormatted);
+
+        return appointmentRepository.save(appointment);
+    }
+
+    public boolean dayValidator(LocalDateTime dateTime) throws Exception {
+
+        LocalTime timeOpen = LocalTime.of(8, 0);
+        LocalTime timeClosed = LocalTime.of(19, 0);
+
+        if (dateTime.getDayOfWeek().getValue() == 6 || dateTime.getDayOfWeek().getValue() == 7)
+            throw new Exception("Appointment cannot be given on weekend");
+        if ( dateTime.toLocalTime().isBefore(timeOpen) || dateTime.toLocalTime().isAfter(timeClosed))
+            throw new Exception("It is not possible to make an appointment outside of business hours");
+        return true;
+
+
     }
 }

@@ -45,6 +45,17 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.updateClientProperty(appointmentId, clientId , propertyId));
     }
 
+    @PutMapping("/addDateAppointment/{appointmentId}")
+    public ResponseEntity<String> addDateAppointment(@RequestParam String dateAppointment, @PathVariable int appointmentId) throws Exception {
+
+        if (appointmentId == 0 || dateAppointment.equals("") || dateAppointment.isEmpty())
+            ResponseEntity.noContent().build();
+
+        appointmentService.addDateAppointment(dateAppointment, appointmentId);
+
+        return ResponseEntity.ok("Appointment date has been setted");
+    }
+
     @DeleteMapping("/delete/{idAppointment}")
     public ResponseEntity<String> delete(@PathVariable("idAppointment") int idAppointment) throws Exception{
         if (idAppointment == 0) {
