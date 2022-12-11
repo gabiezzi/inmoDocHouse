@@ -15,6 +15,9 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public ClientEntity save(ClientEntity clientEntity) throws Exception {
         Optional<ClientEntity> client = clientRepository.findById(clientEntity.getId());
@@ -24,6 +27,8 @@ public class ClientService {
         } else {
             throw new Exception("El cliente ya se encuenta creado");
         }
+
+        emailService.sendWelcomeEmailTo(clientEntity.getUsername(), clientEntity.getEmail());
 
         return clientEntity;
     }
