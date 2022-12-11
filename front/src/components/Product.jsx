@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BsShare, BsFillHeartFill } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { FaBed, FaToilet, FaRegEdit} from "react-icons/fa";
@@ -6,6 +6,7 @@ import { MdPhotoSizeSelectSmall, MdDelete } from "react-icons/md";
 import '../styles/product.css'
 import { ProductContext } from '../context/product/ProductContext';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/user/UserContext';
 
 export const Product = ({item, imagen}) => {
     const {deleteById, changeProperty} = useContext(ProductContext); 
@@ -15,6 +16,8 @@ export const Product = ({item, imagen}) => {
         setIsCliked(!isClicked);
         isClicked ? setcolor('red') : setcolor('');
     }
+
+
   return (
     <>
         <div className='border rounded d-flex card target mb-2' style={{maxWidth: '540px'}}>
@@ -33,6 +36,10 @@ export const Product = ({item, imagen}) => {
                             <button onClick={ ()=> changeColor() } className="boton">
                                 <BsFillHeartFill className={`${color}`} />
                             </button>
+
+                            {
+
+                            }
                             <button className='boton' onClick={()=> changeProperty(item) }>
                                 <Link to='/propiedad/registro'>
                                     <FaRegEdit/>

@@ -30,7 +30,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav text-center d-flex flex-column flex-lg-row w-100 justify-content-end">
 
-                <li className="nav-item mx-5 my-2">
+                <li className="nav-item mx-4 my-2">
                   <Link to='/preregistro' className='text-decoration-none text-dark'>Comienza</Link>
                 </li>
               {
