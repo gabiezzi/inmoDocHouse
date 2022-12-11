@@ -60,8 +60,9 @@ public class AuthController {
 		
 		//obtenemos el token del jwtTokenProvider
 		String token = jwtTokenProvider.generateToken(authentication);
+		String username = jwtTokenProvider.obtainUsernameJwt(token);
 		
-		return ResponseEntity.ok(new JWTAuthResponse(token));
+		return ResponseEntity.ok(new JWTAuthResponse(token , username) );
 	}
 	
 	@PostMapping("/signin")

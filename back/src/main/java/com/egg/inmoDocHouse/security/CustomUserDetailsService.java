@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
 
-        return new User(user.getEmail(), user.getPassword(), mapRol(user.getRol()));
+        return new User(user.getUsername(), user.getPassword(), mapRol(user.getRol()));
     }
 
 
