@@ -104,6 +104,13 @@ public class PropertyController {
         return new ResponseEntity<List<Property>>( propertyService.findAllByEnteId(enteId), HttpStatus.OK);
     }
 
+    @GetMapping("/byname/{enteName}")
+    public ResponseEntity<List<Property>> findAllByEnteName(@PathVariable("enteName") String enteName) {
+        if(enteName.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return new ResponseEntity<List<Property>>( propertyService.findAllByEnteName(enteName), HttpStatus.OK);
+    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Property>> findAll() {

@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -21,13 +24,11 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAppointment;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreation;
+    private LocalDateTime dateCreation;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAppointment;
+    private LocalDateTime dateAppointment;
 
-    private boolean status; //en espera , aprobada
+    private boolean status = Boolean.FALSE; //en espera , aprobada
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "appointment-client")
@@ -36,5 +37,6 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference(value = "property-appointment")
     private Property property;
+
 
 }

@@ -33,6 +33,9 @@ public interface PropertyRepository extends JpaRepository<Property,Integer> {
 
     Optional<List<Property>> findAllByEnteId(int enteId);
 
+    @Query("SELECT a FROM Property a WHERE a.ente.username= :enteName")
+    Optional<List<Property>> findAllByEnteName(@Param("enteName") String enteName);
+
     Optional<List<Property>> findByUbication(String ubication);
 
     Optional<Property> findByAddress(String address);
