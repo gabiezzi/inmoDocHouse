@@ -144,6 +144,19 @@ public class PropertyService {
 
     }
 
+    public List<Property> findAllByEnteName(String enteName) {
+
+        if (!enteName.isEmpty() || !enteName.equals(null)) {
+            return propertyRepository.findAllByEnteName(enteName).orElse(null);
+
+        } else {
+
+            throw new NullPointerException();
+        }
+
+
+    }
+
     public List<Property> findByUbication(String ubication) {
 
         if (!ubication.equals(null)) {

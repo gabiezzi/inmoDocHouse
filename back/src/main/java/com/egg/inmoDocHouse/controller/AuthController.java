@@ -114,7 +114,7 @@ public class AuthController {
 		enteEntity.setRol(Collections.singleton(roles));
 
 		enteService.save(enteEntity);
-		return new ResponseEntity<>("Cliente registrado exitosamente",HttpStatus.OK);
+		return new ResponseEntity<>("Ente registrado exitosamente",HttpStatus.OK);
 	}
 
 
