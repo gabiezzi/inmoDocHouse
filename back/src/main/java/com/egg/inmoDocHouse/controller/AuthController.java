@@ -60,8 +60,9 @@ public class AuthController {
 		
 		//obtenemos el token del jwtTokenProvider
 		String token = jwtTokenProvider.generateToken(authentication);
+		String username = jwtTokenProvider.obtainUsernameJwt(token);
 		
-		return ResponseEntity.ok(new JWTAuthResponse(token));
+		return ResponseEntity.ok(new JWTAuthResponse(token , username) );
 	}
 	
 	@PostMapping("/signin")
@@ -113,7 +114,7 @@ public class AuthController {
 		enteEntity.setRol(Collections.singleton(roles));
 
 		enteService.save(enteEntity);
-		return new ResponseEntity<>("Cliente registrado exitosamente",HttpStatus.OK);
+		return new ResponseEntity<>("Ente registrado exitosamente",HttpStatus.OK);
 	}
 
 

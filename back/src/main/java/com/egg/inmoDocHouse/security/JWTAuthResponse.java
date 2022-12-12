@@ -7,14 +7,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class JWTAuthResponse {
 
 	private String accessToken;
+	private String username;
 	private String tokenType = "Bearer";
 
-	public JWTAuthResponse(String accessToken) {
+	public JWTAuthResponse(String accessToken , String username) {
 		this.accessToken = accessToken;
+		this.username = username;
+
 	}
 }

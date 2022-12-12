@@ -1,0 +1,30 @@
+.sidebar{
+    height:100vh;
+    width:max-content
+}
+.lista{
+    list-style: none;
+}
+
+.lista li {
+}
+.img-perfil{
+    width:5rem
+}
+.contenido-sidebar{
+    overflow-y: scroll;
+}
+
+.links:hover{
+color:darkslategray!important
+}
+
+.cerrar-sesion{
+    color: rgb(95, 116, 116)!important;
+    font-weight: bold
+}
+
+.cerrar-sesion:hover {
+    color: darkslategray !important;
+    font-weight: bold
+}
