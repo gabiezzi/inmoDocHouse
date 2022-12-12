@@ -3,6 +3,21 @@
     max-height: 100vh;
     width: 100%;
 }
+
+.title-container{
+    background-image: url('../images/cool-background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.title-container h2 {
+    color: aliceblue;
+    font-weight: bold;
+}
+
+
 @media (max-width:992px) {
     .form-container{
         margin-top: 2rem;
@@ -10,4 +25,11 @@
         height: auto;
         width: 100%;
     }
+}
+
+@media (max-width:575px) {
+
+.title-container{
+    display: none !important;
+ }
 }

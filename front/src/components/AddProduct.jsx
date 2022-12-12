@@ -63,7 +63,7 @@ export const AddProduct = () => {
   return (
     <>
         <div className='d-flex flex-column flex-sm-row flex-lg-row col-12'>
-            <div className='col-12 col-sm-6 col-lg-6 d-flex align-items-center justify-content-center'>
+            <div className='col-12 col-sm-6 col-lg-6 d-flex align-items-center justify-content-center title-container'>
                 <h2 className='text-center'>Registre su inmueble</h2>
             </div>
             <div className='col-10 col-sm-6 col-lg-6 m-auto '>
