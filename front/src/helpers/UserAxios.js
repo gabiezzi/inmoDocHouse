@@ -8,14 +8,9 @@ export const signin = async(user) => {
 
 export const login = async(user) => {
     try {
-        const { usernameOrEmail } = user
-        const {data} = await axios.post('http://localhost:8080/api/auth/login', user);
-        const userRegistred = {
-            usernameOrEmail,
-            token:data.accessToken
-        }
-        window.localStorage.setItem('user', JSON.stringify(userRegistred));
-        return userRegistred;
+        const {data} = await axios.post('http://localhost:8080/api/auth/login', user); 
+        window.localStorage.setItem('user', JSON.stringify(data));
+        return data;
     } catch (error) {
         throw new Error(error);
     }

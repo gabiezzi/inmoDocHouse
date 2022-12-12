@@ -36,18 +36,6 @@ export const Product = ({item, imagen}) => {
                             <button onClick={ ()=> changeColor() } className="boton">
                                 <BsFillHeartFill className={`${color}`} />
                             </button>
-
-                            {
-
-                            }
-                            <button className='boton' onClick={()=> changeProperty(item) }>
-                                <Link to='/propiedad/registro'>
-                                    <FaRegEdit/>
-                                </Link>
-                            </button>
-                            <button className='boton' onClick={()=>deleteById(item.id) }>
-                                <MdDelete/>
-                            </button>
                         </div>
                         <p className='card-title text-center '>{item.typeOperation}</p>
                         <div className='d-flex align-items-center justify-content-center'>

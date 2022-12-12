@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import { findPropertyByUser } from "../../helpers/ProductAxios";
 import { login } from "../../helpers/UserAxios";
 import { TYPES } from "../types";
 import { UserContext } from "./UserContext";
@@ -55,6 +56,11 @@ export const UserState = ({children}) => {
     navigate('/login');
    }
 
+   const getPropertiesByUser = async() => {
+    const res = await findPropertyByUser(state.username, state.token);
+    console.log(res);
+   }
+
   return (
   <UserContext.Provider value={{
     token: state.token,
@@ -63,7 +69,8 @@ export const UserState = ({children}) => {
     userLogin,
     inSession: state.inSession,
     logout,
-    login: loginNavigate
+    login: loginNavigate,
+    getPropertiesByUser
   }}>
     {children}
   </UserContext.Provider>)

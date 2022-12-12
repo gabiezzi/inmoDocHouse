@@ -12,6 +12,9 @@ import { ForgotPassword } from './pages/ForgotPassword'
 import { UserState } from './context/user/UserState'
 import { Profile } from './pages/Profile'
 import { PreRegistration } from './pages/PreRegistration'
+import { CompleteData } from './components/CompleteData'
+import { Propiedades } from './components/Propiedades'
+import { Turnos } from './pages/Turnos'
 
 function App() {
 
@@ -32,6 +35,9 @@ function App() {
               <Route path='/recuperar' element={ <ForgotPassword/> } />
               <Route path='/perfil' element={ <Profile/> } />
               <Route path='/preregistro' element={ <PreRegistration/> } />
+              <Route path='/completar' element={ <CompleteData/> } />
+              <Route path='/propiedades/administrar' element={ <Propiedades/> }/>
+              <Route path='/turnos' element={ <Turnos/> } />
             </Routes>
           </ProductState>
         </UserState>

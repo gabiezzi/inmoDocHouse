@@ -80,3 +80,19 @@ export const findByMaxPrice = async(price)=> {
     const {data} = await axios.get(`http://localhost:8080/api/property/pricemin/${price}`);
     return data;
 }
+
+export const findPropertyByUser =  async(entename, token) => {
+
+    const config = {
+        url: `http://localhost:8080/api/property/byname/${entename}`,
+        method:'GET',
+        headers: { 
+            'Authorization': token,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
+            'Content-Type': 'application/json',
+        },
+    }
+    const {data} = await axios(config);
+    return data;
+}

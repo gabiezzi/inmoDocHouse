@@ -10,7 +10,7 @@ export const userReducer = (state, action) => {
                 ...state,
                 token:`Bearer ${payload.token}`,
                 inSession:true,
-                username: payload.usernameOrEmail,
+                username: payload.username,
             }
         case TYPES.LOGOUT:
             return{

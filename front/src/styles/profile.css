@@ -6,13 +6,14 @@
     list-style: none;
 }
 
-.lista li {
-}
 .img-perfil{
     width:5rem
 }
 .contenido-sidebar{
-    overflow-y: scroll;
+    background-image: url('../images/cool-background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .links:hover{
@@ -20,7 +21,7 @@ color:darkslategray!important
 }
 
 .cerrar-sesion{
-    color: rgb(95, 116, 116)!important;
+    color: rgb(44, 46, 46)!important;
     font-weight: bold
 }
 
